@@ -9,6 +9,7 @@ import android.widget.Button;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
@@ -25,9 +26,12 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.registerButton:
-                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileRegisterFragment()).commit();
-//                getFragmentManager().beginTransaction().addToBackStack(null);
-//                getFragmentManager().beginTransaction().commit();
+//                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileRegisterFragment()).commit();
+                Fragment newFragment = new ProfileRegisterFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
                 break;
         }
     }
