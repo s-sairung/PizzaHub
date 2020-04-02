@@ -1,6 +1,7 @@
 package chula.project.pizzahub;
 
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,7 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
 
-
+import chula.project.pizzahub.classes.DataTranfer;
 import chula.project.pizzahub.classes.Profile;
 import chula.project.pizzahub.classes.Users;
 
@@ -31,14 +32,16 @@ public class ProfileSignupFragment extends Fragment {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Bundle bundle = new Bundle();
+
                 String userID = userIDInput.getText().toString();
                 String password = passwordInput.getText().toString();
                 String cardNumber = cardNumberInput.getText().toString();
                 Profile newProfile = new Profile(userID, password, cardNumber);
                 Users users = new Users();
                 users.addProfile(newProfile);
-                bundle.putSerializable("users", users);
+                DataTranfer dt = new DataTranfer(users, newProfile);
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("data", dt);
                 Fragment newFragment = new ProfileInfoFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);

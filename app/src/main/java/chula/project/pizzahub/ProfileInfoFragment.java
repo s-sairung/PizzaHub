@@ -10,8 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import chula.project.pizzahub.classes.DataTranfer;
 import chula.project.pizzahub.classes.Profile;
 import chula.project.pizzahub.classes.Users;
 
@@ -25,12 +27,17 @@ public class ProfileInfoFragment extends Fragment {
         TextView password = (TextView) view.findViewById(R.id.showPasswordTextView);
         TextView cardNo = (TextView) view.findViewById(R.id.showCardTextView);
         Bundle bundle = getArguments();
-        Users users = (Users) bundle.getSerializable("users");
-        Profile profile1 = users.getProfilesList().get(0);
-        userID.setText(profile1.getUserID());
-        password.setText(profile1.getPassword());
-        cardNo.setText(profile1.getCardNumber());
+        DataTranfer data = (DataTranfer) bundle.getSerializable("data");
+        Profile profile = data.getProfile();
+        Users users = data.getUsers();
+        userID.setText(profile.getUserID());
+        password.setText(profile.getPassword());
+        cardNo.setText(profile.getCardNumber());
         return view;
     }
+
+//    public static ProfileInfoFragment newInstance(Users users) {
+//
+//    }
 
 }
