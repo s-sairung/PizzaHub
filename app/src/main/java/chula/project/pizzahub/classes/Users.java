@@ -1,13 +1,14 @@
 package chula.project.pizzahub.classes;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Users {
+public class Users implements Serializable {
 
     private boolean isLogin = false;
     private ArrayList<Profile> profilesList;
 
-    public Users(Profile profile) {
+    public Users() {
         profilesList = new ArrayList<Profile>();
     }
 

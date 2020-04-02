@@ -4,10 +4,10 @@ public class Profile {
 
     private String userID;
     private String password;
-    private int cardNumber;
+    private String cardNumber;
     private boolean isLogin = false;
 
-    public Profile(String userID, String password, int cardNumber) {
+    public Profile(String userID, String password, String cardNumber) {
         this.userID = userID;
         this.password = password;
         this.cardNumber = cardNumber;
@@ -21,7 +21,7 @@ public class Profile {
         return this.password;
     }
 
-    public int getCardNumber() {
+    public String getCardNumber() {
         return this.cardNumber;
     }
 
