@@ -17,15 +17,15 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_login, container, false);
-        Button registerButton = (Button) view.findViewById(R.id.registerButton);
-        registerButton.setOnClickListener(this);
+        Button goSignupButton = (Button) view.findViewById(R.id.goToSignupButton);
+        goSignupButton.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.registerButton:
+            case R.id.goToSignupButton:
 //                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileSignupFragment()).commit();
                 Fragment newFragment = new ProfileSignupFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();

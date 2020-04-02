@@ -19,7 +19,7 @@
         app:layout_constraintVertical_bias="0.376" />
 
     <TextView
-        android:id="@+id/userIDTextView2"
+        android:id="@+id/passwordTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Password"
@@ -57,7 +57,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.129"
-        app:layout_constraintStart_toEndOf="@+id/userIDTextView2"
+        app:layout_constraintStart_toEndOf="@+id/passwordTextView"
         app:layout_constraintTop_toBottomOf="@+id/userIDEditText"
         app:layout_constraintVertical_bias="0.0" />
 
@@ -80,14 +80,14 @@
         android:layout_height="wrap_content"
         android:text="Don't have an account?"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/registerButton"
+        app:layout_constraintEnd_toStartOf="@+id/goToSignupButton"
         app:layout_constraintHorizontal_bias="0.769"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.804" />
 
     <Button
-        android:id="@+id/registerButton"
+        android:id="@+id/goToSignupButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Signup"

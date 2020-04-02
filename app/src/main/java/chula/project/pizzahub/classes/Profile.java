@@ -2,19 +2,39 @@ package chula.project.pizzahub.classes;
 
 public class Profile {
 
+    private String userID;
+    private String password;
+    private int cardNumber;
     private boolean isLogin = false;
-    private User user;
 
-    public Profile(User user) {
-        this.isLogin = true;
-        this.user = user;
+    public Profile(String userID, String password, int cardNumber) {
+        this.userID = userID;
+        this.password = password;
+        this.cardNumber = cardNumber;
     }
 
-    public User getUser() {
-        return user;
+    public String getUserID() {
+        return this.userID;
     }
 
-    public boolean isLogin() {
-        return isLogin;
+    public String getPassword() {
+        return this.password;
     }
+
+    public int getCardNumber() {
+        return this.cardNumber;
+    }
+
+    public boolean getLoginStatus() {
+        return this.isLogin;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public void setLoginStatus(boolean status) {
+        this.isLogin = status;
+    }
+
 }
