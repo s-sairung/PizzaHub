@@ -11,12 +11,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
-public class ProfileFragment extends Fragment implements View.OnClickListener {
+public class ProfileLoginFragment extends Fragment implements View.OnClickListener {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile, container, false);
+        View view = inflater.inflate(R.layout.fragment_profile_login, container, false);
         Button registerButton = (Button) view.findViewById(R.id.registerButton);
         registerButton.setOnClickListener(this);
         return view;
@@ -26,8 +26,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.registerButton:
-//                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileRegisterFragment()).commit();
-                Fragment newFragment = new ProfileRegisterFragment();
+//                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileSignupFragment()).commit();
+                Fragment newFragment = new ProfileSignupFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);

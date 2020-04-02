@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new HistoryFragment();
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new ProfileFragment();
+                            selectedFragment = new ProfileLoginFragment();
                             break;
                     }
 
