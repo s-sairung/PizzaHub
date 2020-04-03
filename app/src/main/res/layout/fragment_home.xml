@@ -1,31 +1,120 @@
 <?xml version="1.0" encoding="utf-8"?>
  <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
+     xmlns:app="http://schemas.android.com/apk/res-auto"
+     xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent" >
 
-        <ScrollView
-            android:id="@+id/scrollView1"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerHorizontal="true"
-            android:scrollbars="none" >
 
-            <LinearLayout
-                android:id="@+id/layoutScroll"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:orientation="vertical" >
+     <ScrollView
+         android:layout_width="match_parent"
+         android:layout_height="match_parent"
+         android:layout_alignParentBottom="true"
+         android:layout_marginBottom="0dp">
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginBottom="20dp"
-                    android:layout_marginTop="20dp"
-                    android:text="Text 1"
-                    android:textSize="30dp" />
-            </LinearLayout>
-        </ScrollView>
-    </RelativeLayout>
+         <LinearLayout
+             android:id="@+id/layoutScroll"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent"
+             android:orientation="vertical">
+
+             <TextView
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:padding="10dp"
+                 android:text="Pizzahub"
+                 android:textStyle="bold" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Setcombo" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Pizza" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Other" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="match_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <Button
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:text="Flash Deal!!!" />
+
+             <ImageView
+                 android:id="@+id/flashdeal"
+                 android:layout_width="match_parent"
+                 android:layout_height="match_parent" />
+
+         </LinearLayout>
+     </ScrollView>
+ </RelativeLayout>
