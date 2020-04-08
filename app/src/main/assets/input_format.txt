@@ -1,0 +1,20 @@
+Store ?: (?) 
+
+Category: <<?, ?>>, Pizza, Others
+Category Others: <<?, ?>>, Drinks
+
+Food
+<<Single Menu>>: <<Food, Food>>
+<<Choice>> (?,B?), <<Choice>> (?,B?)
+<<Single Menu>>: <<Food (?,B?), Food (?,B?)>>
+
+Menu
+Flash Deal: 
+	<< <<Food>> <<Choice>> x?,  >>
+	B?
+
+<<Set>>: 
+	<< <<Food>> <<Choice>> x?,  >>
+	B?	
+
+Account ? : <<UserID>>, <<Password>>

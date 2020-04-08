@@ -74,6 +74,15 @@ public class FileInteract {
     }
 
 
+    // ใช้ code บรรทัดที่ 79-85 ในการอ่านไฟล์ได้
+
+    //        InputStream input = getAssets().open("input.txt");
+//        try {
+//
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 //    public static boolean getLoginStatus(Context context) {
 //        InputStream file = null;

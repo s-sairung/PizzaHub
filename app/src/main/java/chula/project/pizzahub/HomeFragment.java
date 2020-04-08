@@ -16,13 +16,6 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        //        InputStream input = getAssets().open("input.txt");
-//        try {
-//
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
 
 
 
