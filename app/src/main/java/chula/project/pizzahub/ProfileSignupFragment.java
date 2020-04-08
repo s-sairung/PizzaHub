@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -44,6 +45,7 @@ public class ProfileSignupFragment extends Fragment {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("data", dt);
                 Fragment newFragment = new ProfileInfoFragment();
+                Toast.makeText(getActivity(),"Signup Successful", Toast.LENGTH_SHORT).show();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 newFragment.setArguments(bundle);

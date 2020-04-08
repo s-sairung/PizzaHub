@@ -39,7 +39,7 @@ public class ProfileLoginFragment extends Fragment implements View.OnClickListen
                 Fragment newFragment = new ProfileSignupFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
+//                transaction.addToBackStack(null);
                 transaction.commit();
                 break;
         }

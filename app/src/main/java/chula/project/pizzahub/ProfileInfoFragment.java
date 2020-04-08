@@ -26,8 +26,6 @@ public class ProfileInfoFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-
-
         View view = inflater.inflate(R.layout.fragment_profile_info, container, false);
         FileInteract.saveLoginStatus(getContext(), true);
 
@@ -48,8 +46,12 @@ public class ProfileInfoFragment extends Fragment {
         return view;
     }
 
-//    public static ProfileInfoFragment newInstance(Users users) {
-//
-//    }
+    private void clearBackStack(FragmentManager fragmentManager) {
+        if (fragmentManager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry entry = fragmentManager.getBackStackEntryAt(0);
+            fragmentManager.popBackStack(entry.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
+        }
+    }
+
 
 }
