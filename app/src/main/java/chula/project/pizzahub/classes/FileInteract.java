@@ -37,7 +37,6 @@ public class FileInteract {
                 }
             }
         }
-
     }
 
     public static String loadLoginStatus(Context context) {
@@ -73,8 +72,80 @@ public class FileInteract {
         return output;
     }
 
+    public static void saveProfile(Context context, Profile profile) {
 
-    // ใช้ code บรรทัดที่ 79-85 ในการอ่านไฟล์ได้
+        FileOutputStream fos = null;
+
+        String userID = profile.getUserID() + System.getProperty("line.separator");
+        String password = profile.getPassword() + System.getProperty("line.separator");
+        String cardNo = profile.getCardNumber();
+
+        try {
+            fos = context.openFileOutput("profile.txt", MODE_PRIVATE);
+            fos.write(userID.getBytes());
+            fos.write(password.getBytes());
+            fos.write(cardNo.getBytes());
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static Profile loadProfile(Context context) {
+        FileInputStream fis = null;
+
+        Profile profile = new Profile();
+        String[] array1 = new String[3];
+        int arrayNo = 0;
+
+        try {
+            fis = context.openFileInput("profile.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+                array1[arrayNo] = text;
+                arrayNo++;
+            }
+
+            profile.setUserID(array1[0]);
+            profile.setPassword(array1[1]);
+            profile.setCardNumber(array1[2]);
+//            output = sb.toString();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return profile;
+    }
+
+
+
+
+    // ใช้ code 7 บรรทัดล่างในการอ่านไฟล์ได้
 
     //        InputStream input = getAssets().open("input.txt");
 //        try {

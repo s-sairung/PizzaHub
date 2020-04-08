@@ -27,21 +27,20 @@ public class ProfileInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile_info, container, false);
-        FileInteract.saveLoginStatus(getContext(), true);
+        Profile profile = FileInteract.loadProfile(getContext());
 
-//        TextView userID = (TextView) view.findViewById(R.id.showUserIDtextView);
-//        TextView password = (TextView) view.findViewById(R.id.showPasswordTextView);
-//
-//        TextView cardNo = (TextView) view.findViewById(R.id.showCardTextView);
+        TextView userID = (TextView) view.findViewById(R.id.showUserIDtextView);
+        TextView password = (TextView) view.findViewById(R.id.showPasswordTextView);
+        TextView cardNo = (TextView) view.findViewById(R.id.showCardTextView);
+
 //        Bundle bundle = getArguments();
 //        DataTranfer data = (DataTranfer) bundle.getSerializable("data");
 //        Profile profile = data.getProfile();
-//
 //        Users users = data.getUsers();
-//        userID.setText(profile.getUserID());
-//        password.setText(profile.getPassword());
-//        cardNo.setText(profile.getCardNumber());
-//        Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_SHORT).show();
+
+        userID.setText(profile.getUserID());
+        password.setText(profile.getPassword());
+        cardNo.setText(profile.getCardNumber());
 
         return view;
     }

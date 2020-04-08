@@ -5,7 +5,10 @@ public class Profile {
     private String userID;
     private String password;
     private String cardNumber;
-    private boolean isLogin = false;
+
+    public Profile() {
+        this("", "", "");
+    }
 
     public Profile(String userID, String password, String cardNumber) {
         this.userID = userID;
@@ -25,16 +28,16 @@ public class Profile {
         return this.cardNumber;
     }
 
-    public boolean getLoginStatus() {
-        return this.isLogin;
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 
     public void setPassword(String password) {
         this.password = password;
     }
 
-    public void setLoginStatus(boolean status) {
-        this.isLogin = status;
+    public void setCardNumber(String cardNumber) {
+        this.cardNumber = cardNumber;
     }
 
 }
