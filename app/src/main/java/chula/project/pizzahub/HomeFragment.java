@@ -15,6 +15,17 @@ public class HomeFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        //        InputStream input = getAssets().open("input.txt");
+//        try {
+//
+//        }
+//        catch (IOException e) {
+//            e.printStackTrace();
+//        }
+
+
+
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
 

@@ -1,0 +1,54 @@
+Store 1: (3) 
+Store 2: (2)
+
+Category: Combo Set, Family Set, Pizza, Others
+Category Others: Pasta, French Fries, Chicken Wings, Drinks
+
+Food
+Pizza: pizza-hawaiian, pizza-bbq-chicken
+size-M (15, B169), size-L (20, B199)
+Pasta: pasta-carbonara (10, B149), pasta-bolognese (10,B139)
+Chicken Wings: 6-pcs (8, B99), 10-pcs (9, B119), 12-pcs (10, B139)
+French Fries: small (2, B20), medium (2, B25), large (2, B30)
+Drinks: coca-cola, sprite
+0.5L (1, B15), 1L (1, B20)
+
+Set Menu
+Flash Deal: 
+	pizza size-L x1, 
+	chicken-wings 6-pcs x1, 
+	pasta x1, 
+	drink 0.5L x1, 
+	B219
+
+Combo Set 1: 
+	pizza size-M x1,
+	chicken-wings 6-pcs, 
+	drink 1L x1, 
+	B499
+Combo Set 2:
+	pizza size-L x1, 
+	pasta x1,
+	french-fries size-S x2, 
+	drink 0.5L x1, 
+	B519
+Combo Set 3:
+	pizza size-L x1,
+	pasta x1,
+	chicken-wings 10-pcs,
+	french-fries x2
+	B699
+
+Family Set 1:
+	pizza size-L x1,
+	pizza size-M x1,
+	chicken-wings 12-pcs x1,
+	pasta x2,
+	french-fries x1
+	drink 1L x1,
+	B899	
+
+Account 1 : Mickey, Mous12345!
+Account 2 : Minnie, Mousy661111][
+Account 3 : Donald, dUcKA@A@A@121212
+Account 4 : Daisy, #duck442288

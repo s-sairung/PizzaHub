@@ -6,8 +6,18 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.InputStream;
+
+import chula.project.pizzahub.classes.FileInteract;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -16,10 +26,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        FileInteract.saveLoginStatus(getBaseContext(), false);
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -38,8 +50,13 @@ public class MainActivity extends AppCompatActivity {
                             selectedFragment = new HistoryFragment();
                             break;
                         case R.id.nav_profile:
-                            selectedFragment = new ProfileLoginFragment();
-                            break;
+                            if (Boolean.parseBoolean(FileInteract.loadLoginStatus(getBaseContext()))) {
+                                selectedFragment = new ProfileInfoFragment(); break;
+                            }
+                            else {
+                                selectedFragment = new ProfileLoginFragment(); break;
+                            }
+
                     }
 
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
