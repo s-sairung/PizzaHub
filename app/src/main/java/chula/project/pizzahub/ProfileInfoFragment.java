@@ -45,12 +45,4 @@ public class ProfileInfoFragment extends Fragment {
         return view;
     }
 
-    private void clearBackStack(FragmentManager fragmentManager) {
-        if (fragmentManager.getBackStackEntryCount() > 0) {
-            FragmentManager.BackStackEntry entry = fragmentManager.getBackStackEntryAt(0);
-            fragmentManager.popBackStack(entry.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        }
-    }
-
-
 }
