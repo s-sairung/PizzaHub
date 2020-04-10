@@ -23,17 +23,17 @@ public class HomeFragment extends Fragment {
 
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
-        public void onClick(View v) {
-            switch (v.getId()) {
-                case R.id.imageButtonFlash:
+
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.imageButtonFlash:
 //                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileSignupFragment()).commit();
-                    Fragment newFragment =  PizzaFragment();
-                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                    transaction.replace(R.id.fragment_container, newFragment);
+                Fragment newFragment = new PizzaFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
 //                transaction.addToBackStack(null);
-                    transaction.commit();
-                    break;
-            }
+                transaction.commit();
+                break;
         }
     }
 }
