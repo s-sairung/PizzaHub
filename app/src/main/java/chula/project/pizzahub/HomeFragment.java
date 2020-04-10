@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import chula.project.pizzahub.PizzaFragment;
 
@@ -23,7 +24,9 @@ public class HomeFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_home, container, false);
     }
     public void flash(View v){
-        Intent itnt = new Intent(this,PizzaFragment);
-        startActivity(itnt);
+        Fragment newFragment = new PizzaFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.commit();
     }
 }

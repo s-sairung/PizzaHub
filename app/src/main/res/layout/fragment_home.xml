@@ -45,31 +45,6 @@
                  android:layout_height="fill_parent"
                  android:text="Other" />
 
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
              <ImageButton
                  android:id="@+id/imageButton"
                  android:layout_width="match_parent"
@@ -77,50 +52,6 @@
                  android:onClick="flash"
                  app:srcCompat="@drawable/flashdeal" />
 
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="match_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <ImageView
-                 android:id="@+id/flashdeal"
-                 android:layout_width="match_parent"
-                 android:layout_height="match_parent" />
 
          </LinearLayout>
      </ScrollView>
