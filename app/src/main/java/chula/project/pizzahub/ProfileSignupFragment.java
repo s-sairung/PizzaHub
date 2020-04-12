@@ -27,6 +27,7 @@ public class ProfileSignupFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile_signup, container, false);
         Button signupButton = (Button) view.findViewById(R.id.signupButton);
+        Button goLoginButton = (Button) view.findViewById(R.id.goToLoginButton);
         final EditText userIDInput = (EditText) view.findViewById(R.id.userIDEditText2);
         final EditText passwordInput = (EditText) view.findViewById(R.id.passwordEditText2);
         final EditText cardNumberInput = (EditText) view.findViewById(R.id.cardEditText2);
@@ -53,6 +54,17 @@ public class ProfileSignupFragment extends Fragment {
                 transaction.commit();
             }
         });
+
+        goLoginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new ProfileLoginFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.commit();
+            }
+        });
+
         return view;
     }
 
