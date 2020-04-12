@@ -8,7 +8,10 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Scanner;
 
 
 import static android.content.Context.MODE_PRIVATE;
@@ -126,11 +129,14 @@ public class FileInteract {
             profile.setCardNumber(array1[2]);
 //            output = sb.toString();
 
-        } catch (FileNotFoundException e) {
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             if (fis != null) {
                 try {
                     fis.close();
@@ -143,6 +149,36 @@ public class FileInteract {
     }
 
 
+    public static String readInputFile(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.getAssets().open("input.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine ()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return string;
+    }
 
 
     // ใช้ code 7 บรรทัดล่างในการอ่านไฟล์ได้
