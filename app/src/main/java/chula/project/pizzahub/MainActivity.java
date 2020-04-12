@@ -18,6 +18,7 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import chula.project.pizzahub.classes.FileInteract;
+import chula.project.pizzahub.classes.InputStringConvert;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
 
+        FileInteract.saveAllStore(getBaseContext(), InputStringConvert.getSimpleStore(InputStringConvert.getStore(FileInteract.readInputFile(getBaseContext()))));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener = new BottomNavigationView.OnNavigationItemSelectedListener() {

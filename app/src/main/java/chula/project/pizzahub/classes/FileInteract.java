@@ -10,7 +10,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -178,6 +177,28 @@ public class FileInteract {
             }
         }
         return string;
+    }
+
+    public static void saveAllStore(Context context, String stores) {
+
+        FileOutputStream fos = null;
+
+        try {
+            fos = context.openFileOutput("stores.txt", MODE_PRIVATE);
+            fos.write(stores.getBytes());
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 

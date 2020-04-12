@@ -13,6 +13,11 @@ public class Store {
         this.maxOrders = maxOrders;
     }
 
+    public int getStoreNumber() {
+        return storeNumber;
+    }
 
-
+    public int getMaxOrders() {
+        return maxOrders;
+    }
 }

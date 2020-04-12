@@ -17,7 +17,7 @@ public class InputStringConvert {
                 found = true;
             }
             if (found) {
-                string += line;
+                string += line.trim();
                 if (in.hasNextLine()) {
                     string += "\n";
                 }
@@ -64,6 +64,67 @@ public class InputStringConvert {
             star += "*";
         }
         return star;
+    }
+
+    public static String getStore(String input) {
+        String string = "";
+        String line = "";
+        Scanner in = new Scanner(input);
+        Scanner in2 = new Scanner(input);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            string += line.trim();
+            if (in2.hasNextLine()) {
+                if (!in2.nextLine().equals("")) {
+                    string += "\n";
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        in.close();
+        return string;
+    }
+
+    public static int getStoreCount(String stores) {
+        int count = 0;
+        String line = "";
+        Scanner in = new Scanner(stores);
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            count++;
+        }
+        return count;
+    }
+
+    public static String getSimpleStore(String stores) {
+        String storeString = "";
+        String line = "";
+        Scanner in = new Scanner(stores);
+        int storeNo = 1;
+        Scanner in2 = new Scanner(stores);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            String curStore = "Store " + storeNo + ": ";
+            String maxOrder = line.replace(curStore, "").replace("(", "").replace(")","");;
+            storeString += "store" + storeNo + "\n";
+            storeString += maxOrder;
+            if (in2.hasNextLine()) {
+                if (!in2.nextLine().equals("")) {
+                    storeString += "\n";
+                }
+            }
+            storeNo++;
+        }
+        in.close();
+        return storeString;
     }
 
 }
