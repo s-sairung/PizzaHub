@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import chula.project.pizzahub.PizzaFragment;
+import chula.project.pizzahub.classes.FlashdealFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -38,12 +39,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.imageButtonFlash:
-                Fragment newFragment = new PizzaFragment();
+            case R.id.imageButtonSet:
+                Fragment newFragment = new SetComboFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
+                break;
+            case R.id.imageButtonFlash:
+                Fragment x = new PizzaFragment();
+                FragmentTransaction y = getFragmentManager().beginTransaction();
+                y.replace(R.id.fragment_container, x);
+                y.addToBackStack(null);
+                y.commit();
                 break;
         }
     }

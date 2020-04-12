@@ -25,28 +25,17 @@
                  android:text="Pizzahub"
                  android:textStyle="bold" />
 
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Setcombo" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Pizza" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
-                 android:text="Other" />
-
              <ImageButton
                  android:id="@+id/imageButtonFlash"
                  android:layout_width="match_parent"
                  android:layout_height="100dp"
                  app:srcCompat="@drawable/flashdeal" />
 
-
+             <ImageButton
+                 android:id="@+id/imageButtonSet"
+                 android:layout_width="300dp"
+                 android:layout_height="208dp"
+                 app:srcCompat="@drawable/hawaii" />
          </LinearLayout>
      </ScrollView>
  </RelativeLayout>
