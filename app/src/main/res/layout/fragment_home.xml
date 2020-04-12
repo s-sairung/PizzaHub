@@ -28,11 +28,6 @@
              <Button
                  android:layout_width="fill_parent"
                  android:layout_height="fill_parent"
-                 android:text="Flash Deal!!!" />
-
-             <Button
-                 android:layout_width="fill_parent"
-                 android:layout_height="fill_parent"
                  android:text="Setcombo" />
 
              <Button
@@ -48,7 +43,7 @@
              <ImageButton
                  android:id="@+id/imageButtonFlash"
                  android:layout_width="match_parent"
-                 android:layout_height="165dp"
+                 android:layout_height="100dp"
                  app:srcCompat="@drawable/flashdeal" />
 
 
