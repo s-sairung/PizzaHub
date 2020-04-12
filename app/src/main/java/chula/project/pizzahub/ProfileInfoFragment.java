@@ -17,6 +17,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import chula.project.pizzahub.classes.DataTranfer;
 import chula.project.pizzahub.classes.FileInteract;
+import chula.project.pizzahub.classes.InputStringConvert;
 import chula.project.pizzahub.classes.Profile;
 import chula.project.pizzahub.classes.Users;
 
@@ -28,18 +29,12 @@ public class ProfileInfoFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_profile_info, container, false);
         Profile profile = FileInteract.loadProfile(getContext());
-
         TextView userID = (TextView) view.findViewById(R.id.showUserIDtextView);
         TextView password = (TextView) view.findViewById(R.id.showPasswordTextView);
         TextView cardNo = (TextView) view.findViewById(R.id.showCardTextView);
 
-//        Bundle bundle = getArguments();
-//        DataTranfer data = (DataTranfer) bundle.getSerializable("data");
-//        Profile profile = data.getProfile();
-//        Users users = data.getUsers();
-
         userID.setText(profile.getUserID());
-        password.setText(profile.getPassword());
+        password.setText(InputStringConvert.convertStar(profile.getPassword()));
         cardNo.setText(profile.getCardNumber());
 
         return view;

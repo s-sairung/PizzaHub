@@ -1,7 +1,6 @@
 package chula.project.pizzahub;
 
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,8 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
-
-
-import chula.project.pizzahub.classes.DataTranfer;
 import chula.project.pizzahub.classes.FileInteract;
 import chula.project.pizzahub.classes.Profile;
-import chula.project.pizzahub.classes.Users;
 
 public class ProfileSignupFragment extends Fragment {
 
@@ -31,7 +26,7 @@ public class ProfileSignupFragment extends Fragment {
         final EditText userIDInput = (EditText) view.findViewById(R.id.userIDEditText2);
         final EditText passwordInput = (EditText) view.findViewById(R.id.passwordEditText2);
         final EditText cardNumberInput = (EditText) view.findViewById(R.id.cardEditText2);
-//        signupButton.setOnClickListener(this);
+
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -41,16 +36,10 @@ public class ProfileSignupFragment extends Fragment {
                 Profile newProfile = new Profile(userID, password, cardNumber);
                 FileInteract.saveProfile(getContext(), newProfile);
                 FileInteract.saveLoginStatus(getContext(), true);
-//                Users users = new Users();
-//                users.addProfile(newProfile);
-//                DataTranfer dt = new DataTranfer(users, newProfile);
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("data", dt);
                 Fragment newFragment = new ProfileInfoFragment();
                 Toast.makeText(getActivity(),"Signup Successful", Toast.LENGTH_SHORT).show();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
-//                newFragment.setArguments(bundle);
                 transaction.commit();
             }
         });
@@ -67,19 +56,5 @@ public class ProfileSignupFragment extends Fragment {
 
         return view;
     }
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.signupButton:
-//                Fragment newFragment = new ProfileSignupFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragment_container, newFragment);
-//                transaction.addToBackStack(null);
-//                transaction.commit();
-//                break;
-//        }
-//    }
-
 
 }

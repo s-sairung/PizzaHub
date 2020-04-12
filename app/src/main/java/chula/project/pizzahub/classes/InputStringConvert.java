@@ -57,4 +57,13 @@ public class InputStringConvert {
         return accountArrayList;
     }
 
+    public static String convertStar(String string) {
+        String star = "";
+        int length = string.length();
+        for (int i = 0; i < length; i++) {
+            star += "*";
+        }
+        return star;
+    }
+
 }
