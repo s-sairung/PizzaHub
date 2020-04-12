@@ -34,7 +34,6 @@ public class ProfileSignupFragment extends Fragment {
         signupButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 String userID = userIDInput.getText().toString();
                 String password = passwordInput.getText().toString();
                 String cardNumber = cardNumberInput.getText().toString();

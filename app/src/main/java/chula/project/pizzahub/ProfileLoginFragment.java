@@ -5,44 +5,100 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import chula.project.pizzahub.classes.CheckLogin;
 import chula.project.pizzahub.classes.FileInteract;
+import chula.project.pizzahub.classes.Profile;
 
-public class ProfileLoginFragment extends Fragment implements View.OnClickListener {
+public class ProfileLoginFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_profile_login, container, false);
+        final View view = inflater.inflate(R.layout.fragment_profile_login, container, false);
         Button goSignupButton = (Button) view.findViewById(R.id.goToSignupButton);
-        goSignupButton.setOnClickListener(this);
+        Button loginButton = (Button) view.findViewById(R.id.loginButton);
+//        goSignupButton.setOnClickListener(this);
+//        loginButton.setOnClickListener(this);
+        final EditText userIDInput = (EditText) view.findViewById(R.id.userIDEditText);
+        final EditText passwordInput = (EditText) view.findViewById(R.id.passwordEditText);
 
-//        FileInteract.saveLoginStatus(getContext(), false);
-//
-//        TextView test = (TextView) view.findViewById(R.id.userIDTextView);
-//        test.setText(FileInteract.loadLoginStatus(getContext()));
+        goSignupButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new ProfileSignupFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.commit();
+            }
+        });
+
+        loginButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String userID = userIDInput.getText().toString();
+                String password = passwordInput.getText().toString();
+                if (CheckLogin.checkLogin(userID, password, getContext())) {
+                    Profile newProfile = new Profile(userID, password);
+                    FileInteract.saveProfile(getContext(), newProfile);
+                    FileInteract.saveLoginStatus(getContext(), true);
+                    Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_SHORT).show();
+                    Fragment newFragment = new ProfileInfoFragment();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, newFragment);
+                    transaction.commit();
+                }
+                else {
+                    Toast.makeText(getActivity(),"Incorrect Login Credential", Toast.LENGTH_SHORT).show();
+                    userIDInput.setText("");
+                    passwordInput.setText("");
+                }
+            }
+        });
 
         return view;
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.goToSignupButton:
-//                getFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileSignupFragment()).commit();
-                Fragment newFragment = new ProfileSignupFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, newFragment);
-//                transaction.addToBackStack(null);
-                transaction.commit();
-                break;
-        }
-    }
+//    @Override
+//    public void onClick(View v) {
+//        EditText userIDInput = (EditText) v.findViewById(R.id.userIDEditText);
+//        EditText passwordInput = (EditText) v.findViewById(R.id.passwordEditText);
+//        String userID = userIDInput.getText().toString();
+//        String password = passwordInput.getText().toString();
+//        Fragment newFragment;
+//        FragmentTransaction transaction;
+//        switch (v.getId()) {
+//            case R.id.goToSignupButton:
+//                newFragment = new ProfileSignupFragment();
+//                transaction = getFragmentManager().beginTransaction();
+//                transaction.replace(R.id.fragment_container, newFragment);
+//                transaction.commit();
+//                break;
+//            case R.id.loginButton:
+//                if (CheckLogin.checkLogin(userID, password, getContext())) {
+//                    Profile newProfile = new Profile(userID, password);
+//                    FileInteract.saveProfile(getContext(), newProfile);
+//                    FileInteract.saveLoginStatus(getContext(), true);
+//                    Toast.makeText(getActivity(),"Login Successful", Toast.LENGTH_SHORT).show();
+//                    newFragment = new ProfileInfoFragment();
+//                    transaction = getFragmentManager().beginTransaction();
+//                    transaction.replace(R.id.fragment_container, newFragment);
+//                    transaction.commit();
+//                }
+//                else {
+//                    Toast.makeText(getActivity(),"Incorrect Login Credential", Toast.LENGTH_SHORT).show();
+//
+//                }
+//                break;
+//        }
+//    }
 
 }

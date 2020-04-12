@@ -10,6 +10,10 @@ public class Profile {
         this("", "", "");
     }
 
+    public Profile(String userID, String password) {
+        this(userID, password, "");
+    }
+
     public Profile(String userID, String password, String cardNumber) {
         this.userID = userID;
         this.password = password;

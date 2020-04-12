@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class CheckLogin {
 
-    public static boolean checkLogin(String userID, String password, Context context) throws FileNotFoundException {
+    public static boolean checkLogin(String userID, String password, Context context) {
         String input = FileInteract.readInputFile(context);
         String accounts = InputStringConvert.getAccount(input);
         int accountCnt = InputStringConvert.getAccountCount(accounts);
