@@ -4,14 +4,16 @@ public class Menu {
 
     private String name;
     private double price;
+    private int time;
 
     public Menu() {
-        this("", 0.0);
+        this("", 0.0, 0);
     }
 
-    public Menu(String name, double price) {
+    public Menu(String name, double price, int time) {
         this.name = name;
         this.price = price;
+        this.time = time;
     }
 
     public String getName() {
@@ -26,13 +28,16 @@ public class Menu {
         return price;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public int getTime() {
+        return time;
     }
 
-    @Override
-    public String toString() {
-        return getClass().getSimpleName() + "[name=" + this.name + ",price=" + this.price + "]";
+    public void setTime(int time) {
+        this.time = time;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
     }
 
 }

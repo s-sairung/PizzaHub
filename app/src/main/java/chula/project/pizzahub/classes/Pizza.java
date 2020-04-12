@@ -7,11 +7,11 @@ public class Pizza extends Menu {
     private String size;
 
     public Pizza() {
-        this("", 0.0, "", "", "");
+        this("", 0.0, 0, "", "", "");
     }
 
-    public Pizza(String name, double price, String topping, String crust, String size) {
-        super(name, price);
+    public Pizza(String name, double price, int time, String topping, String crust, String size) {
+        super(name, price, time);
         this.topping = topping;
         this.crust = crust;
         this.size = size;
