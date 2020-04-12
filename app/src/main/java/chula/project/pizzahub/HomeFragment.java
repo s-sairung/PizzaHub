@@ -39,14 +39,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     public void onClick(View v) {
         switch (v.getId()) {
-            case R.id.imageButtonSet:
+            case R.id.imageButtonFlash:
                 Fragment newFragment = new SetComboFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
                 break;
-            case R.id.imageButtonFlash:
+            case R.id.imageButtonOther:
                 Fragment x = new PizzaFragment();
                 FragmentTransaction y = getFragmentManager().beginTransaction();
                 y.replace(R.id.fragment_container, x);

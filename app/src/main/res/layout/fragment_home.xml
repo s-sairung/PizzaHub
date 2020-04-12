@@ -30,12 +30,23 @@
                  android:layout_width="match_parent"
                  android:layout_height="100dp"
                  app:srcCompat="@drawable/flashdeal" />
-
              <ImageButton
                  android:id="@+id/imageButtonSet"
-                 android:layout_width="300dp"
+                 android:layout_width="match_parent"
                  android:layout_height="208dp"
-                 app:srcCompat="@drawable/hawaii" />
+                 app:srcCompat="@drawable/setcombo" />
+             <ImageButton
+                 android:id="@+id/imageButtonPizza"
+                 android:layout_width="match_parent"
+                 android:layout_height="208dp"
+                 app:srcCompat="@drawable/hawaiian" />
+
+             <ImageButton
+                 android:id="@+id/imageButtonOther"
+                 android:layout_width="match_parent"
+                 android:layout_height="222dp"
+                 app:srcCompat="@drawable/chicken" />
+
          </LinearLayout>
      </ScrollView>
  </RelativeLayout>
