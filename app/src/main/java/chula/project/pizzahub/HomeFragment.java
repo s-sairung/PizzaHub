@@ -48,7 +48,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         for (int i = 0; i < categories.size(); i++) {
             ImageView image = new ImageView(getContext());
-            switch (categories.get(i)) {
+            switch (categories.get(i)) { //ขนาดรูป 300x200 นะ ไปลองเปลี่ยนเป็นรูปปั่น ๆ ได้
                 case "Pizza": image.setImageResource(R.drawable.catpizza); break;
                 case "Others": image.setImageResource(R.drawable.catothers); break;
                 case "Combo Set": image.setImageResource(R.drawable.catcombo); break;
