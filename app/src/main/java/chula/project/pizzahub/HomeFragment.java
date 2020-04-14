@@ -68,59 +68,40 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.imageButtonFlash:
                 newFragment = new SetComboFragment();
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case R.id.imageButtonOther:
                 newFragment = new PizzaFragment();
-                transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 0:
                 category = categories.get(0);
                 newFragment = FragmentAssist.getFragment(category);
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 1:
                 category = categories.get(1);
                 newFragment = FragmentAssist.getFragment(category);
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 2:
                 category = categories.get(2);
                 newFragment = FragmentAssist.getFragment(category);
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 3:
                 category = categories.get(3);
                 newFragment = FragmentAssist.getFragment(category);
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 4:
                 category = categories.get(4);
                 newFragment = FragmentAssist.getFragment(category);
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
                 break;
             case 5:
                 category = categories.get(5);
                 newFragment = FragmentAssist.getFragment(category);
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                break;
+            default:
+                newFragment = new OthersFragment();
                 break;
         }
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 }
