@@ -1,6 +1,7 @@
 package chula.project.pizzahub.classes;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Scanner;
 
 public class InputStringConvert {
@@ -125,6 +126,56 @@ public class InputStringConvert {
         }
         in.close();
         return storeString;
+    }
+
+    public static String getCategories(String input) {
+        String string = "";
+        String line = "";
+        String line2 = "";
+        boolean found = false;
+        Scanner in = new Scanner(input);
+        Scanner in2 = new Scanner(input);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (in2.hasNextLine()) {
+                line2 = in2.nextLine();
+            }
+            if (line.contains("Category")) {
+                found = true;
+            }
+            if (found) {
+                string += line.trim();
+                if (!line2.equals("")) {
+                    string += "\n";
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        in.close();
+        return string;
+    }
+
+    public static ArrayList<String> getMainCategoriesArrayList(String category) {
+        String string = "";
+        String line = "";
+        ArrayList<String> categories = new ArrayList<>();
+        Scanner in = new Scanner(category);
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (line.contains("Category: ")) {
+                line = line.replace("Category: ", "");
+                String[] cats = line.split(", ");
+                Collections.addAll(categories, cats);
+                break;
+            }
+        }
+        in.close();
+        return categories;
     }
 
 }

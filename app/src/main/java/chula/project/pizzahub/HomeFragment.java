@@ -14,6 +14,11 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import java.util.ArrayList;
+
+import chula.project.pizzahub.classes.FileInteract;
+import chula.project.pizzahub.classes.InputStringConvert;
+
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @Nullable
@@ -31,11 +36,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         imageButton.setOnClickListener(this);
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScroll);
+        ArrayList<String> categories = InputStringConvert.getMainCategoriesArrayList(InputStringConvert.getCategories(FileInteract.readInputFile(getContext())));
 
-        for (int i = 0; i < 5; i++) {
+//        for (int i = 0; i < 5; i++) {
+//            Button button = new Button(getContext());
+//            button.setId(i);
+//            button.setText("Button No " + (i+1));
+//            layout.addView(button);
+//        }
+
+        for (int i = 0; i < categories.size(); i++) {
             Button button = new Button(getContext());
             button.setId(i);
-            button.setText("Button No " + (i+1));
+            button.setText(categories.get(i));
             layout.addView(button);
         }
 
