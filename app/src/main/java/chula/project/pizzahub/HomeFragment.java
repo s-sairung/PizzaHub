@@ -27,11 +27,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        //clear back stack
-        FragmentManager fm = getActivity().getSupportFragmentManager();
-        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
-            fm.popBackStack();
-        }
+//        //clear back stack
+//        FragmentManager fm = getActivity().getSupportFragmentManager();
+//        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
+//            fm.popBackStack();
+//        }
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.imageButtonFlash);

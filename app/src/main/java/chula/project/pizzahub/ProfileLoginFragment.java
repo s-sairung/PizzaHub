@@ -10,6 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import chula.project.pizzahub.classes.CheckLogin;
 import chula.project.pizzahub.classes.FileInteract;
@@ -20,6 +21,7 @@ public class ProfileLoginFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
         final View view = inflater.inflate(R.layout.fragment_profile_login, container, false);
         Button goSignupButton = (Button) view.findViewById(R.id.goToSignupButton);
         Button loginButton = (Button) view.findViewById(R.id.loginButton);
