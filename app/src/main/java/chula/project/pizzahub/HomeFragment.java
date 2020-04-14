@@ -18,6 +18,7 @@ import androidx.fragment.app.FragmentTransaction;
 import java.util.ArrayList;
 
 import chula.project.pizzahub.classes.FileInteract;
+import chula.project.pizzahub.classes.FragmentAssist;
 import chula.project.pizzahub.classes.InputStringConvert;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
@@ -39,13 +40,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScroll);
         ArrayList<String> categories = InputStringConvert.getMainCategoriesArrayList(InputStringConvert.getCategories(FileInteract.readInputFile(getContext())));
 
-//        for (int i = 0; i < 5; i++) {
-//            Button button = new Button(getContext());
-//            button.setId(i);
-//            button.setText("Button No " + (i+1));
-//            layout.addView(button);
-//        }
-
         for (int i = 0; i < categories.size(); i++) {
             ImageView image = new ImageView(getContext());
             switch (categories.get(i)) { //ขนาดรูป 300x200 นะ ไปลองเปลี่ยนเป็นรูปปั่น ๆ ได้
@@ -59,6 +53,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             Button button = new Button(getContext());
             button.setId(i);
             button.setText(categories.get(i));
+            button.setOnClickListener(this);
             layout.addView(button);
         }
 
@@ -66,20 +61,65 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
+        ArrayList<String> categories = InputStringConvert.getMainCategoriesArrayList(InputStringConvert.getCategories(FileInteract.readInputFile(getContext())));
+        String category;
+        Fragment newFragment;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.imageButtonFlash:
-                Fragment newFragment = new SetComboFragment();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                newFragment = new SetComboFragment();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.addToBackStack(null);
                 transaction.commit();
                 break;
             case R.id.imageButtonOther:
-                Fragment x = new PizzaFragment();
-                FragmentTransaction y = getFragmentManager().beginTransaction();
-                y.replace(R.id.fragment_container, x);
-                y.addToBackStack(null);
-                y.commit();
+                newFragment = new PizzaFragment();
+                transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 0:
+                category = categories.get(0);
+                newFragment = FragmentAssist.getFragment(category);
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 1:
+                category = categories.get(1);
+                newFragment = FragmentAssist.getFragment(category);
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 2:
+                category = categories.get(2);
+                newFragment = FragmentAssist.getFragment(category);
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 3:
+                category = categories.get(3);
+                newFragment = FragmentAssist.getFragment(category);
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 4:
+                category = categories.get(4);
+                newFragment = FragmentAssist.getFragment(category);
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
+                break;
+            case 5:
+                category = categories.get(5);
+                newFragment = FragmentAssist.getFragment(category);
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.addToBackStack(null);
+                transaction.commit();
                 break;
         }
     }

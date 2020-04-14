@@ -22,8 +22,8 @@
                  android:layout_width="fill_parent"
                  android:layout_height="fill_parent"
                  android:padding="10dp"
-                 android:text="Pizzahub"
-                 android:textStyle="bold" />
+                 android:text="PizzaHub"
+                 android:textStyle="bold|italic" />
 
              <ImageButton
                  android:id="@+id/imageButtonFlash"
