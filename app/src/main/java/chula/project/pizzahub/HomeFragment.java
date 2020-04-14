@@ -4,19 +4,15 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import chula.project.pizzahub.PizzaFragment;
-import chula.project.pizzahub.classes.FlashdealFragment;
 
 public class HomeFragment extends Fragment implements View.OnClickListener {
 
@@ -33,6 +29,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.imageButtonFlash);
         imageButton.setOnClickListener(this);
+
+        LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScroll);
+
+        for (int i = 0; i < 5; i++) {
+            Button button = new Button(getContext());
+            button.setId(i);
+            button.setText("Button No " + (i+1));
+            layout.addView(button);
+        }
 
         return view;
     }

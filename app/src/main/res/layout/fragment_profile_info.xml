@@ -66,4 +66,12 @@
         android:text="Card"
         app:layout_constraintEnd_toStartOf="@+id/showCardTextView"
         app:layout_constraintTop_toBottomOf="@+id/infoTextView2" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="140dp"
+        android:layout_height="116dp"
+        app:srcCompat="@drawable/ic_person_black_24dp"
+        tools:layout_editor_absoluteX="120dp"
+        tools:layout_editor_absoluteY="51dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
