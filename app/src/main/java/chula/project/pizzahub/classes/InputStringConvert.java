@@ -178,4 +178,22 @@ public class InputStringConvert {
         return categories;
     }
 
+    public static ArrayList<String> getOtherCategoriesArrayList(String category) {
+        String string = "";
+        String line = "";
+        ArrayList<String> categories = new ArrayList<>();
+        Scanner in = new Scanner(category);
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (line.contains("Category Others: ")) {
+                line = line.replace("Category Others: ", "");
+                String[] cats = line.split(", ");
+                Collections.addAll(categories, cats);
+                break;
+            }
+        }
+        in.close();
+        return categories;
+    }
+
 }
