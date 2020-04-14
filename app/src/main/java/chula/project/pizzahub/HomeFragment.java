@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import androidx.annotation.NonNull;
@@ -46,6 +47,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //        }
 
         for (int i = 0; i < categories.size(); i++) {
+            ImageView image = new ImageView(getContext());
+            switch (categories.get(i)) {
+                case "Pizza": image.setImageResource(R.drawable.catpizza); break;
+                case "Others": image.setImageResource(R.drawable.catothers); break;
+                case "Combo Set": image.setImageResource(R.drawable.catcombo); break;
+                case "Family Set": image.setImageResource(R.drawable.catfamily); break;
+                default: image.setImageResource(R.drawable.catdefault); break;
+            }
+            layout.addView(image);
             Button button = new Button(getContext());
             button.setId(i);
             button.setText(categories.get(i));
