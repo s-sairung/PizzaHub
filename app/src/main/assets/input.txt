@@ -23,7 +23,7 @@ Flash Deal:
 
 Combo Set 1: 
 	pizza size-M x1,
-	chicken-wings 6-pcs, 
+	chicken-wings 6-pcs x1,
 	drink 1L x1, 
 	B499
 Combo Set 2:
@@ -35,7 +35,7 @@ Combo Set 2:
 Combo Set 3:
 	pizza size-L x1,
 	pasta x1,
-	chicken-wings 10-pcs,
+	chicken-wings 10-pcs x1,
 	french-fries x2
 	B699
 
