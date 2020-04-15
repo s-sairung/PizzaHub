@@ -38,7 +38,7 @@ public class OthersFragment extends Fragment implements View.OnClickListener {
             }
             layout.addView(image);
             Button button = new Button(getContext());
-            button.setId(i);
+            button.setId(i+10);
             button.setText(categories.get(i));
             button.setOnClickListener(this);
             layout.addView(button);

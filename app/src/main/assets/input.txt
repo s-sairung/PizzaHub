@@ -6,12 +6,12 @@ Category Others: Pasta, French Fries, Chicken Wings, Drinks
 
 Food
 Pizza: pizza-hawaiian, pizza-bbq-chicken
-size-M (15, B169), size-L (20, B199)
-Pasta: pasta-carbonara (10, B149), pasta-bolognese (10,B139)
-Chicken Wings: 6-pcs (8, B99), 10-pcs (9, B119), 12-pcs (10, B139)
-French Fries: small (2, B20), medium (2, B25), large (2, B30)
+size-M (15,B169), size-L (20,B199)
+Pasta: pasta-carbonara (10,B149), pasta-bolognese (10,B139)
+Chicken Wings: 6-pcs (8,B99), 10-pcs (9,B119), 12-pcs (10,B139)
+French Fries: small (2,B20), medium (2,B25), large (2,B30)
 Drinks: coca-cola, sprite
-0.5L (1, B15), 1L (1, B20)
+0.5L (1,B15), 1L (1,B20)
 
 Set Menu
 Flash Deal: 
