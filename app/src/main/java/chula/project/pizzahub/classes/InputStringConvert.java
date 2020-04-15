@@ -199,4 +199,117 @@ public class InputStringConvert {
         return categories;
     }
 
+    public static String getSpecificFood(String food, String foodType) {
+        foodType += ": ";
+        String string = "";
+        String line = "";
+        String line2 = "";
+        boolean found = false;
+        boolean hasSize = false;
+        Scanner in = new Scanner(food);
+        Scanner in2 = new Scanner(food);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (in2.hasNextLine()) {
+                line2 = in2.nextLine();
+            }
+            if (line.contains(foodType)) {
+                found = true;
+            }
+            if (found) {
+                string += line.trim();
+                if (!line2.contains(":")) {
+                    string += "\n";
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        in.close();
+        in2.close();
+
+        string = string.replace(foodType, "");
+
+        return string.trim();
+    }
+
+    public static ArrayList<Food> getSpecificFoodArrayList(String specificFood) {
+
+        ArrayList<Food> foodArrayList = new ArrayList<>();
+        boolean hasSize = false;
+        Scanner in = new Scanner(specificFood);
+        String line = in.nextLine();
+        String line2 = "";
+        if (in.hasNextLine()) {
+            hasSize = true;
+            line2 = in.nextLine();
+        }
+        in.close();
+
+        if (!hasSize) {
+            String[] split = line.split(", ");
+            for (String food : split) {
+                String[] split2 = food.split(" ");
+                //0 เป็นชื่ออาหาร
+                //1 เป็นเวลากับราคา (เวลา,Bราคา)
+                String name = split2[0];
+                String foodProperty = split2[1];
+                foodProperty = foodProperty.replace("(", "").replace(")", "");
+                String[] split3 = foodProperty.split(",");
+                //0 เป็นเวลา
+                //1 เป็นราคา
+                int time = Integer.parseInt(split3[0]);
+                double price = Double.parseDouble(split3[1].replace("B",""));
+                FoodNoSize foodTemp = new FoodNoSize(name, time, price);
+                foodArrayList.add(foodTemp);
+            }
+        }
+        else {
+            String[] splitFoodName = line.split(", ");
+            String[] splitFoodProperties = line2.split(", ");
+            for (int i = 0; i < splitFoodName.length; i++) {
+                String foodName = splitFoodName[i];
+                for (int j = 0; j < splitFoodProperties.length; j++) {
+                    String[] split2 = splitFoodProperties[j].split(" ");
+                    //0 เป็น sizeName
+                    //1 เป็นเวลากับราคา (เวลา,Bราคา)
+                    String sizeName = split2[0];
+                    String foodTimeAndPrice = split2[1];
+                    foodTimeAndPrice = foodTimeAndPrice.replace("(", "").replace(")", "");
+                    String[] split3 = foodTimeAndPrice.split(",");
+                    //0 เป็นเวลา
+                    //1 เป็นราคา
+                    int time = Integer.parseInt(split3[0]);
+                    double price = Double.parseDouble(split3[1].replace("B",""));
+                    if (foodArrayList.isEmpty()) {
+                        FoodWithSize foodWithSize = new FoodWithSize(foodName);
+                        foodWithSize.addSize(sizeName, time, price);
+                        foodArrayList.add(foodWithSize);
+                    }
+                    else {
+                        boolean foundName = false;
+                        for (Food food : foodArrayList) {
+                            FoodWithSize food1 = (FoodWithSize) food;
+                            if (food1.getName().equals(foodName)) {
+                                food1.addSize(sizeName, time, price);
+                                foundName = true;
+                                break;
+                            }
+                        }
+                        if (!foundName) {
+                            FoodWithSize foodWithSize = new FoodWithSize(foodName);
+                            foodWithSize.addSize(sizeName, time, price);
+                            foodArrayList.add(foodWithSize);
+                        }
+                    }
+                }
+            }
+        }
+        return foodArrayList;
+    }
+
 }
