@@ -16,6 +16,10 @@ public class FoodWithSize extends Food {
         this.size.add(size);
     }
 
+    public void addSize(String sizeName) {
+        this.addSize(sizeName, 0, 0.0);
+    }
+
     public ArrayList<String[]> getSizeArrayList() {
         return size;
     }

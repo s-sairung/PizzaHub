@@ -312,4 +312,51 @@ public class InputStringConvert {
         return foodArrayList;
     }
 
+    public static SetMenu getFlashDealSetMenu(String setMenu) {
+        String line = "";
+        SetMenu set = new SetMenu("Flash Deal");
+        Scanner in = new Scanner(setMenu);
+        Scanner in2 = new Scanner(setMenu);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        boolean ended = false;
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (in2.hasNextLine()) {
+                if (in2.nextLine().equals("")) {
+                    ended = true;
+                }
+            }
+            if (line.equals("Flash Deal:")) {
+                continue;
+            }
+            if (!ended) {
+                line = line.trim().replace(",", "");
+                String[] food = line.split(" ");
+                if (food.length == 2) {
+                    int amount = Integer.parseInt(food[1].replace("x", ""));
+                    for (int i = 1; i <= amount; i++) {
+                        FoodNoSize fns = new FoodNoSize(food[0]);
+                        set.addFood(fns);
+                    }
+                }
+                else if (food.length == 3) {
+                    int amount = Integer.parseInt(food[2].replace("x", ""));
+                    for (int i = 1; i <= amount; i++) {
+                        FoodWithSize fws = new FoodWithSize(food[0]);
+                        fws.addSize(food[1]);
+                        set.addFood(fws);
+                    }
+                }
+            }
+            else {
+                line = line.replace("B", "").trim();
+                set.setPrice(Double.parseDouble(line));
+                break;
+            }
+        }
+        return set;
+    }
+
 }

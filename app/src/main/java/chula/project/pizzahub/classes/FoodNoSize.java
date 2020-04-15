@@ -11,6 +11,10 @@ public class FoodNoSize extends Food {
         this.price = price;
     }
 
+    public FoodNoSize(String name) {
+        this(name, 0, 0.0);
+    }
+
     public int getTime() {
         return time;
     }
