@@ -8,6 +8,10 @@ public class Food {
         this.name = name;
     }
 
+    public Food() {
+        this("");
+    }
+
     public String getName() {
         return name;
     }

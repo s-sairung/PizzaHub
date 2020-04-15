@@ -359,4 +359,36 @@ public class InputStringConvert {
         return set;
     }
 
+    public static String getSetMenu(String input) {
+        String string = "";
+        String line = "";
+        String line2 = "";
+        boolean found = false;
+        Scanner in = new Scanner(input);
+        Scanner in2 = new Scanner(input);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (in2.hasNextLine()) {
+                line2 = in2.nextLine();
+                if (line2.contains("Account")) {
+                    break;
+                }
+            }
+            if (line.contains("Set Menu")) {
+                found = true;
+                line = line.replace("Set Menu", "");
+            }
+            if (found) {
+                string += line.trim();
+                string += "\n";
+            }
+        }
+        in.close();
+        in2.close();
+        return string.trim();
+    }
+
 }

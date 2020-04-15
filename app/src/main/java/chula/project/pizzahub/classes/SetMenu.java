@@ -30,6 +30,36 @@ public class SetMenu {
         return setMenu;
     }
 
+    public ArrayList<String> getAllFoodName() {
+        ArrayList<String> foodNames = new ArrayList<>();
+        if (!setMenu.isEmpty()) {
+            for (Food food : setMenu) {
+                foodNames.add(food.getName());
+            }
+        }
+        return foodNames;
+    }
+
+    public ArrayList<Integer> getAllFoodAmount() {
+        ArrayList<String> foodNames = this.getAllFoodName();
+        ArrayList<Integer> foodAmount = new ArrayList<>();
+        Food lastFood = new Food();
+        int cnt = 0;
+        if (!setMenu.isEmpty()) {
+            for (Food food : setMenu) {
+                if (!food.getName().equals(lastFood.getName())) {
+                    cnt = 1; //ค้างไว้ตรงนี้
+                }
+                else {
+                    cnt++;
+                }
+                lastFood = food;
+            }
+        }
+
+        return foodAmount;
+    }
+
     public String getName() {
         return name;
     }
@@ -44,6 +74,10 @@ public class SetMenu {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public int getFoodAmount() {
+        return setMenu.size();
     }
 
     @Override
