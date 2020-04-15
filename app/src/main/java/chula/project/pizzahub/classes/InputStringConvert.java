@@ -88,6 +88,7 @@ public class InputStringConvert {
             }
         }
         in.close();
+        in2.close();
         return string;
     }
 
@@ -125,6 +126,7 @@ public class InputStringConvert {
             storeNo++;
         }
         in.close();
+        in2.close();
         return storeString;
     }
 
@@ -157,6 +159,7 @@ public class InputStringConvert {
             }
         }
         in.close();
+        in2.close();
         return string;
     }
 
