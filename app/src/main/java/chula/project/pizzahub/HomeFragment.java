@@ -69,9 +69,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.imageButtonFlash:
                 newFragment = new FlashdealFragment();
                 break;
-            case R.id.imageButtonOther:
-                newFragment = new PizzaFragment();
-                break;
             case 0:
                 category = categories.get(0);
                 newFragment = FragmentAssist.getFragment(category);

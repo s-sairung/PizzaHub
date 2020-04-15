@@ -79,6 +79,18 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/doublecheese" />
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:padding="10dp"
+                android:text="                                                   Meat Deluxe"
+                android:textStyle="bold" />
+
+            <ImageButton
+                android:id="@+id/imageButtonMeatDeluxe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/meatdeluxe" />
 
         </LinearLayout>
     </ScrollView>
