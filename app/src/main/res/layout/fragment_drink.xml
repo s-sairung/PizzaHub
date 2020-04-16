@@ -23,38 +23,27 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="                                                 Numhit"
+                android:text="                                                 Cola"
                 android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/imageButtonNumhit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/numhit" />
+                app:srcCompat="@drawable/cola" />
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:text="                                                 Supercombo"
+                android:text="                                                 Sprite"
                 android:textStyle="bold" />
 
             <ImageButton
                 android:id="@+id/imageButtonSuperCombo"
                 android:layout_width="match_parent"
                 android:layout_height="206dp"
-                app:srcCompat="@drawable/supercombo" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="                                                 Setcombo "
-                android:textStyle="bold" />
+                app:srcCompat="@drawable/sprite" />
 
-            <ImageButton
-                android:id="@+id/imageButtonSetCombo"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/setcombo" />
 
 
         </LinearLayout>
