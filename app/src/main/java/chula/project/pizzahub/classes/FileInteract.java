@@ -180,9 +180,7 @@ public class FileInteract {
     }
 
     public static void saveAllStore(Context context, String stores) {
-
         FileOutputStream fos = null;
-
         try {
             fos = context.openFileOutput("stores.txt", MODE_PRIVATE);
             fos.write(stores.getBytes());
@@ -199,6 +197,65 @@ public class FileInteract {
                 }
             }
         }
+    }
+
+    public static void updateOrder(Context context, SetMenu setMenu) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.getAssets().open("order.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine ()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+
+
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("order.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+
+
     }
 
 
