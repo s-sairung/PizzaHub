@@ -43,19 +43,11 @@ public class SetMenu {
     public ArrayList<Integer> getAllFoodAmount() {
         ArrayList<String> foodNames = this.getAllFoodName();
         ArrayList<Integer> foodAmount = new ArrayList<>();
-        Food lastFood = new Food();
+        String lastFoodname = "";
         int cnt = 0;
-        if (!setMenu.isEmpty()) {
-            for (Food food : setMenu) {
-                if (!food.getName().equals(lastFood.getName())) {
-                    cnt = 1; //ค้างไว้ตรงนี้
-                }
-                else {
-                    cnt++;
-                }
-                lastFood = food;
-            }
-        }
+
+        //รอเขียน
+
 
         return foodAmount;
     }
