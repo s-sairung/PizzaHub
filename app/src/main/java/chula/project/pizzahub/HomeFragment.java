@@ -1,7 +1,6 @@
 package chula.project.pizzahub;
 
 import android.os.Bundle;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,12 +8,10 @@ import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.util.ArrayList;
@@ -43,35 +40,20 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         ArrayList<String> categories = InputStringConvert.getMainCategoriesArrayList(InputStringConvert.getCategories(FileInteract.readInputFile(getContext())));
 
         for (int i = 0; i < categories.size(); i++) {
-//            ImageView image = new ImageView(getContext());
-            ImageButton imageButtonLoop = new ImageButton(getContext());
-            TextView textView = new TextView(getContext());
-            switch (categories.get(i)) {
-                case "Pizza": imageButtonLoop.setImageResource(R.drawable.catpizza); break;
-                case "Others": imageButtonLoop.setImageResource(R.drawable.catothers); break;
-                case "Combo Set": imageButtonLoop.setImageResource(R.drawable.catcombo); break;
-                case "Family Set": imageButtonLoop.setImageResource(R.drawable.catfamily); break;
-                default: imageButtonLoop.setImageResource(R.drawable.catdefault); break;
+            ImageView image = new ImageView(getContext());
+            switch (categories.get(i)) { //ขนาดรูป 300x200 นะ ไปลองเปลี่ยนเป็นรูปปั่น ๆ ได้
+                case "Pizza": image.setImageResource(R.drawable.catpizza); break;
+                case "Others": image.setImageResource(R.drawable.catothers); break;
+                case "Combo Set": image.setImageResource(R.drawable.catcombo); break;
+                case "Family Set": image.setImageResource(R.drawable.catfamily); break;
+                default: image.setImageResource(R.drawable.catdefault); break;
             }
-//            switch (categories.get(i)) { //ขนาดรูป 300x200 นะ ไปลองเปลี่ยนเป็นรูปปั่น ๆ ได้
-//                case "Pizza": image.setImageResource(R.drawable.catpizza); break;
-//                case "Others": image.setImageResource(R.drawable.catothers); break;
-//                case "Combo Set": image.setImageResource(R.drawable.catcombo); break;
-//                case "Family Set": image.setImageResource(R.drawable.catfamily); break;
-//                default: image.setImageResource(R.drawable.catdefault); break;
-//            }
-//            layout.addView(image);
-//            Button button = new Button(getContext());
-//            button.setId(i);
-//            button.setText(categories.get(i));
-//            button.setOnClickListener(this);
-//            layout.addView(button);
-            textView.setText(categories.get(i));
-            textView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-            layout.addView(textView);
-            imageButtonLoop.setId(i);
-            imageButtonLoop.setOnClickListener(this);
-            layout.addView(imageButtonLoop);
+            layout.addView(image);
+            Button button = new Button(getContext());
+            button.setId(i);
+            button.setText(categories.get(i));
+            button.setOnClickListener(this);
+            layout.addView(button);
         }
         return view;
     }
