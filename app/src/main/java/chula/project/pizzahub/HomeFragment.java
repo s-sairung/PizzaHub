@@ -45,7 +45,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 case "Pizza": image.setImageResource(R.drawable.catpizza); break;
                 case "Others": image.setImageResource(R.drawable.catothers); break;
                 case "Combo Set": image.setImageResource(R.drawable.catcombo); break;
-                case "Family Set": image.setImageResource(R.drawable.catfamily); break;
+                case "Family Set": image.setImageResource(R.drawable.familyhut); break;
                 default: image.setImageResource(R.drawable.catdefault); break;
             }
             layout.addView(image);
