@@ -315,7 +315,6 @@ public class InputStringConvert {
     public static String getSetMenuString(String setMenu, String output) {
         String line = "";
         String string = "";
-        output = output.trim();
         Scanner in = new Scanner(setMenu);
         boolean started = false;
         boolean ended = false;

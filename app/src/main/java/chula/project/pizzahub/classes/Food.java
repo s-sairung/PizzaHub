@@ -13,7 +13,7 @@ public class Food {
     }
 
     public String getName() {
-        return name;
+        return name.trim();
     }
 
     @Override

@@ -203,9 +203,9 @@ public class FileInteract {
         String string = "";
         InputStream input = null;
         try {
-            input = context.getAssets().open("order.txt");
+            input = context.openFileInput("order.txt");
             Scanner in = new Scanner(input);
-            while (in.hasNextLine ()) {
+            while (in.hasNextLine()) {
                 string += in.nextLine();
                 if (in.hasNextLine()) {
                     string += "\n";
@@ -229,6 +229,7 @@ public class FileInteract {
         }
 
         string = string.trim();
+        string += "\n";
         string += "\n";
         string += InputStringConvert.getSetMenuString(InputStringConvert.getSetMenu(FileInteract.readInputFile(context)), setMenu.getName());
         string = string.trim();
@@ -256,6 +257,63 @@ public class FileInteract {
         }
     }
 
+    public static void addNewOrder(Context context, String stringInput) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("order.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        string = string.trim();
+        string += "\n";
+        string += "\n";
+        string += stringInput;
+        string = string.trim();
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("order.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     // ใช้ code 7 บรรทัดล่างในการอ่านไฟล์ได้
 
