@@ -54,6 +54,19 @@ public class FoodWithSize extends Food {
         return "Food:" + "\n" + this.getName() + " " + size + "\nB" + (int) price;
     }
 
+    public String toOrder(String category, String size, double price) {
+        return category + ":" + "\n" + this.getName() + " " + size + "\nB" + (int) price;
+    }
+    public String getCategory() {
+        if (this.getName().contains("pizza")) {
+            return "Pizza";
+        }
+        else if (this.getName().contains("coca") || this.getName().contains("sprite")) {
+            return "Drinks";
+        }
+        return "";
+    }
+
     public String toButton(String size, double price) {
         return this.getName() + " " + size + "\nB" + (int) price;
     }

@@ -35,8 +35,25 @@ public class FoodNoSize extends Food {
         return "Food:" + "\n" + this.getName() + "\nB" + (int) this.getPrice();
     }
 
+    public String toOrder(String category) {
+        return category + ":" + "\n" + this.getName() + "\nB" + (int) this.getPrice();
+    }
+
     public String toButton() {
         return this.getName() + "\nB" + (int) this.getPrice();
+    }
+
+    public String getCategory() {
+        if (this.getName().contains("pasta")) {
+            return "Pasta";
+        }
+        else if (this.getName().contains("pcs")) {
+            return "Chicken Wings";
+        }
+        else if (this.getName().contains("small") || this.getName().contains("medium") || this.getName().contains("large")) {
+            return "French Fries";
+        }
+        return "";
     }
 
     @Override
