@@ -50,6 +50,14 @@ public class FoodWithSize extends Food {
         return 0.0;
     }
 
+    public String toOrder(String size, double price) {
+        return "Food:" + "\n" + this.getName() + " " + size + "\nB" + (int) price;
+    }
+
+    public String toButton(String size, double price) {
+        return this.getName() + " " + size + "\nB" + (int) price;
+    }
+
     @Override
     public String toString() {
         return "FoodWithSize{" +

@@ -51,12 +51,11 @@ public class FlashdealFragment extends Fragment {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                FileInteract.addNewOrder(getContext(), setMenu);
-                FileInteract.addNewOrder(getContext(), setMenu.toString());
-//                Fragment newFragment = new OrderFragment();
-//                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-//                transaction.replace(R.id.fragment_container, newFragment);
-//                transaction.commit();
+                FileInteract.addNewOrder(getContext(), setMenu.toOrder());
+                Fragment newFragment = new OrderFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.commit();
             }
         });
         return view;

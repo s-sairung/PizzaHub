@@ -31,6 +31,14 @@ public class FoodNoSize extends Food {
         this.price = price;
     }
 
+    public String toOrder() {
+        return "Food:" + "\n" + this.getName() + "\nB" + (int) this.getPrice();
+    }
+
+    public String toButton() {
+        return this.getName() + "\nB" + (int) this.getPrice();
+    }
+
     @Override
     public String toString() {
         return "FoodNoSize{" +

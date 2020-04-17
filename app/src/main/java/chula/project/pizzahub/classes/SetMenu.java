@@ -133,8 +133,7 @@ public class SetMenu {
         return setMenu.size();
     }
 
-    @Override
-    public String toString() {
+    public String toOrder() {
         ArrayList<String> names = this.getAllFoodName();
         ArrayList<String> size = this.getFoodSizeWithDup();
         String string = "";
@@ -152,4 +151,12 @@ public class SetMenu {
         return string.trim();
     }
 
+    @Override
+    public String toString() {
+        return "SetMenu{" +
+                "name='" + name + '\'' +
+                ", setMenu=" + setMenu +
+                ", price=" + price +
+                '}';
+    }
 }

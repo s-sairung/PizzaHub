@@ -199,6 +199,38 @@ public class InputStringConvert {
         return categories;
     }
 
+    public static String getFood(String input) {
+        String string = "";
+        String line = "";
+        String line2 = "";
+        boolean found = false;
+        Scanner in = new Scanner(input);
+        Scanner in2 = new Scanner(input);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (in2.hasNextLine()) {
+                line2 = in2.nextLine();
+            }
+            if (line.contains("Food")) {
+                found = true;
+            }
+            if (found) {
+                string += line.trim();
+                if (!line2.equals("")) {
+                    string += "\n";
+                }
+                else {
+                    break;
+                }
+            }
+        }
+        in.close();
+        return string;
+    }
+
     public static String getSpecificFood(String food, String foodType) {
         foodType += ": ";
         String string = "";
