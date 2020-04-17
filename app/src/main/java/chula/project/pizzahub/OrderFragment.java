@@ -23,10 +23,10 @@ public class OrderFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollOrder);
-        final TextView rawOrder = new TextView(getContext());
-        rawOrder.setText(FileInteract.readRawOrderFile(getContext()));
-        rawOrder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        layout.addView(rawOrder);
+//        final TextView rawOrder = new TextView(getContext());
+//        rawOrder.setText(FileInteract.readRawOrderFile(getContext()));
+//        rawOrder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+//        layout.addView(rawOrder);
 
         Button clearOrder = (Button) view.findViewById(R.id.clearOrderButton);
         clearOrder.setOnClickListener(new View.OnClickListener() {
@@ -34,10 +34,9 @@ public class OrderFragment extends Fragment {
             public void onClick(View v) {
                 FileInteract.clearOrder(getContext());
                 Toast.makeText(getActivity(),"Order Cleared", Toast.LENGTH_SHORT).show();
-                rawOrder.setText(FileInteract.readRawOrderFile(getContext()));
+//                rawOrder.setText(FileInteract.readRawOrderFile(getContext()));
             }
         });
-
         return view;
     }
 }

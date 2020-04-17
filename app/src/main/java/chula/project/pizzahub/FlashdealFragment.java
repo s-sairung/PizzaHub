@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -52,6 +53,7 @@ public class FlashdealFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 FileInteract.addNewOrder(getContext(), setMenu.toOrder());
+                Toast.makeText(getActivity(),"Added to Order", Toast.LENGTH_SHORT).show();
                 Fragment newFragment = new OrderFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
