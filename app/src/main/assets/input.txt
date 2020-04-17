@@ -44,7 +44,7 @@ Family Set 1:
 	pizza size-M x1,
 	chicken-wings 12-pcs x1,
 	pasta x2,
-	french-fries x1
+	french-fries x1,
 	drink 1L x1,
 	B899	
 
