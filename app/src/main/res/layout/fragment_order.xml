@@ -1,12 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Order"
-        android:textSize="30sp"
-        android:layout_centerInParent="true" />
 
+     <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="-54dp">
+
+            <LinearLayout
+                 android:id="@+id/layoutScroll"
+                 android:layout_width="fill_parent"
+                 android:layout_height="fill_parent"
+                 android:orientation="vertical">
+
+                <ButtonView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    android:text="Submit"
+                    android:textStyle="bold" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="เมนูที่สั่ง"
+                    android:textStyle="bold" />
+                <ButtonView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="+"  />
+
+                <ButtonView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="-"  />
+
+
+
+
+            </LinearLayout>
+    </ScrollView>
 </RelativeLayout>
