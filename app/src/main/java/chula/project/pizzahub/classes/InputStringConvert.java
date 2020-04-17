@@ -359,6 +359,34 @@ public class InputStringConvert {
         return set;
     }
 
+    public static String getFlashDealString(String setMenu) {
+        String line = "";
+        String string = "";
+        Scanner in = new Scanner(setMenu);
+        Scanner in2 = new Scanner(setMenu);
+        if (in2.hasNextLine()) {
+            in2.nextLine();
+        }
+        boolean ended = false;
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (in2.hasNextLine()) {
+                if (in2.nextLine().equals("")) {
+                    ended = true;
+                }
+            }
+            if (!ended) {
+                string += line;
+                string += "\n";
+            }
+            else {
+                string += line;
+                break;
+            }
+        }
+        return string.trim();
+    }
+
     public static String getSetMenu(String input) {
         String string = "";
         String line = "";

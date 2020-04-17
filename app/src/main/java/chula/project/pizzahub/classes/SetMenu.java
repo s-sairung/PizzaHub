@@ -117,13 +117,20 @@ public class SetMenu {
         return setMenu.size();
     }
 
-
     @Override
     public String toString() {
-        return "SetMenu{" +
-                "name='" + name + '\'' +
-                ", setMenu=" + setMenu +
-                ", price=" + price +
-                '}';
+        ArrayList<String> names = this.getFoodNameNoDup();
+        ArrayList<String> size = this.getFoodSizeNoDup();
+        ArrayList<Integer> amount = this.getAllFoodAmount();
+        String string = "";
+        for (int i = 0; i < names.size(); i++) {
+            String line = names.get(i) + " " + size.get(i);
+            line = line.trim();
+            line += " x" + amount.get(i);
+            string += line;
+            string += "\n";
+        }
+        return string.trim();
     }
+
 }

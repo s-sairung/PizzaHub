@@ -228,11 +228,16 @@ public class FileInteract {
             }
         }
 
+//        string += "\n";
+//        string += setMenu.getName();
+//        string += ":";
+//        string += "\n";
+//        string += setMenu.toString();
+//        string = string.trim();
+
         string += "\n";
-
-
-
-
+        string += InputStringConvert.getFlashDealString(InputStringConvert.getSetMenu(FileInteract.readInputFile(context)));
+        string = string.trim();
 
         FileOutputStream fos = null;
         try {
@@ -255,9 +260,6 @@ public class FileInteract {
                 }
             }
         }
-
-
-
     }
 
 

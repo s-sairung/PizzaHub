@@ -27,19 +27,21 @@ public class FlashdealFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_flashdeal, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollFlashDeal);
 
-        SetMenu setMenu = InputStringConvert.getFlashDealSetMenu(InputStringConvert.getSetMenu(FileInteract.readInputFile(getContext())));
+        final SetMenu setMenu = InputStringConvert.getFlashDealSetMenu(InputStringConvert.getSetMenu(FileInteract.readInputFile(getContext())));
         ArrayList<String> names = setMenu.getFoodNameNoDup();
         ArrayList<Integer> amount = setMenu.getAllFoodAmount();
         ArrayList<String> size = setMenu.getFoodSizeNoDup();
 
         for (int i = 0; i < names.size(); i++) {
             TextView tv = new TextView(getContext());
-            tv.setText(names.get(i) + " " + size.get(i) + " " + amount.get(i));
+            String text = names.get(i) + " " + size.get(i);
+            text = text.trim();
+            text += " x" + amount.get(i);
+            tv.setText(text);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
             layout.addView(tv);
         }
-
 
         TextView tv2 = new TextView(getContext());
         tv2.setText("Only " + setMenu.getPrice() + " Baht!!");
@@ -52,6 +54,7 @@ public class FlashdealFragment extends Fragment {
         addToCart.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                FileInteract.addNewOrder(getContext(), setMenu);
                 Fragment newFragment = new OrderFragment();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
