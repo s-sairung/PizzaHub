@@ -315,6 +315,66 @@ public class FileInteract {
         }
     }
 
+    public static String readRawOrderFile(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("order.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return string.trim();
+    }
+
+    public static void clearOrder(Context context) {
+        String string = "";
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("order.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+
+
+
+
     // ใช้ code 7 บรรทัดล่างในการอ่านไฟล์ได้
 
     //        InputStream input = getAssets().open("input.txt");
