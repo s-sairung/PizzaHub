@@ -77,6 +77,22 @@ public class SetMenu {
         return foodSizeNoDup;
     }
 
+    public ArrayList<String> getFoodSizeWithDup() {
+        ArrayList<String> foodSizeWithDup = new ArrayList<>();
+        if (!setMenu.isEmpty()) {
+            for (Food food : setMenu) {
+                if (food instanceof FoodWithSize) {
+                    FoodWithSize fws = (FoodWithSize) food;
+                    foodSizeWithDup.add(fws.getSizeNameArray()[0]);
+                }
+                else {
+                    foodSizeWithDup.add("");
+                }
+            }
+        }
+        return foodSizeWithDup;
+    }
+
     public ArrayList<Integer> getAllFoodAmount() {
         ArrayList<String> foodNames = this.getAllFoodName();
         int size = foodNames.size();

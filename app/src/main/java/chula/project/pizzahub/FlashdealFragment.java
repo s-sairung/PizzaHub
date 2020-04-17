@@ -27,16 +27,13 @@ public class FlashdealFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_flashdeal, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollFlashDeal);
 
-        final SetMenu setMenu = InputStringConvert.getFlashDealSetMenu(InputStringConvert.getSetMenu(FileInteract.readInputFile(getContext())));
-        ArrayList<String> names = setMenu.getFoodNameNoDup();
-        ArrayList<Integer> amount = setMenu.getAllFoodAmount();
-        ArrayList<String> size = setMenu.getFoodSizeNoDup();
+        final SetMenu setMenu = InputStringConvert.getSetMenuSetMenu(InputStringConvert.getSetMenuString(FileInteract.readInputFile(getContext()), "Flash Deal"));
+        ArrayList<String> names = setMenu.getAllFoodName();
+        ArrayList<String> size = setMenu.getFoodSizeWithDup();
 
         for (int i = 0; i < names.size(); i++) {
             TextView tv = new TextView(getContext());
             String text = names.get(i) + " " + size.get(i);
-            text = text.trim();
-            text += " x" + amount.get(i);
             tv.setText(text);
             tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
             tv.setTypeface(tv.getTypeface(), Typeface.BOLD);

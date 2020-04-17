@@ -312,23 +312,48 @@ public class InputStringConvert {
         return foodArrayList;
     }
 
-    public static SetMenu getFlashDealSetMenu(String setMenu) {
+    public static String getSetMenuString(String setMenu, String output) {
         String line = "";
-        SetMenu set = new SetMenu("Flash Deal");
+        String string = "";
+        output = output.trim();
         Scanner in = new Scanner(setMenu);
-        Scanner in2 = new Scanner(setMenu);
-        if (in2.hasNextLine()) {
-            in2.nextLine();
-        }
+        boolean started = false;
         boolean ended = false;
         while (in.hasNextLine()) {
             line = in.nextLine();
-            if (in2.hasNextLine()) {
-                if (in2.nextLine().equals("")) {
+            if (line.contains(output)) {
+                started = true;
+            }
+            if (started) {
+                if (line.contains("B")) {
                     ended = true;
                 }
+                if (!ended) {
+                    string += line;
+                    string += "\n";
+                }
+                else {
+                    string += line;
+                    break;
+                }
             }
-            if (line.equals("Flash Deal:")) {
+        }
+        return string.trim();
+    }
+
+    public static SetMenu getSetMenuSetMenu(String setMenuString) {
+        String line = "";
+        SetMenu set = new SetMenu();
+        Scanner in = new Scanner(setMenuString);
+        boolean ended = false;
+        while (in.hasNextLine()) {
+            line = in.nextLine();
+            if (line.contains("B")) {
+                ended = true;
+            }
+            if (line.contains(":")) {
+                line = line.replace(":", "");
+                set.setName(line);
                 continue;
             }
             if (!ended) {
@@ -357,34 +382,6 @@ public class InputStringConvert {
             }
         }
         return set;
-    }
-
-    public static String getFlashDealString(String setMenu) {
-        String line = "";
-        String string = "";
-        Scanner in = new Scanner(setMenu);
-        Scanner in2 = new Scanner(setMenu);
-        if (in2.hasNextLine()) {
-            in2.nextLine();
-        }
-        boolean ended = false;
-        while (in.hasNextLine()) {
-            line = in.nextLine();
-            if (in2.hasNextLine()) {
-                if (in2.nextLine().equals("")) {
-                    ended = true;
-                }
-            }
-            if (!ended) {
-                string += line;
-                string += "\n";
-            }
-            else {
-                string += line;
-                break;
-            }
-        }
-        return string.trim();
     }
 
     public static String getSetMenu(String input) {
