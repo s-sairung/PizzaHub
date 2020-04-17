@@ -27,7 +27,7 @@
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/imageButtonNumhit"
+                android:id="@+id/imageButtonCola"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/cola" />
@@ -39,7 +39,7 @@
                 android:textStyle="bold" />
 
             <ImageButton
-                android:id="@+id/imageButtonSuperCombo"
+                android:id="@+id/imageButtonSprite"
                 android:layout_width="match_parent"
                 android:layout_height="206dp"
                 app:srcCompat="@drawable/sprite" />

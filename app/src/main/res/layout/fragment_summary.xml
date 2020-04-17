@@ -18,18 +18,11 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
             android:orientation="vertical">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="เมนูที่สั่ง"
-                android:textStyle="bold" />
-            <ButtonView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:text="สั่งซื้อ"  />
 
-
+            <Button
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="Submit"/>
 
 
         </LinearLayout>
