@@ -15,7 +15,7 @@ Drinks: coca-cola, sprite
 
 Set Menu
 Flash Deal: 
-	pizza size-L x1, 
+	pizza size-L x1,
 	chicken-wings 6-pcs x1, 
 	pasta x1, 
 	drink 0.5L x1, 

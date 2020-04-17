@@ -1,5 +1,7 @@
 package chula.project.pizzahub;
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,14 +28,24 @@ public class FlashdealFragment extends Fragment {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollFlashDeal);
 
         SetMenu setMenu = InputStringConvert.getFlashDealSetMenu(InputStringConvert.getSetMenu(FileInteract.readInputFile(getContext())));
-        ArrayList<String> names = setMenu.getAllFoodName();
+        ArrayList<String> names = setMenu.getFoodNameNoDup();
+        ArrayList<Integer> amount = setMenu.getAllFoodAmount();
+        ArrayList<String> size = setMenu.getFoodSizeNoDup();
 
-        for (int i = 0; i < setMenu.getFoodAmount(); i++) {
+        for (int i = 0; i < names.size(); i++) {
             TextView tv = new TextView(getContext());
-            tv.setText(names.get(i));
+            tv.setText(names.get(i) + " " + size.get(i) + " " + amount.get(i));
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+            tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
             layout.addView(tv);
         }
 
+
+        TextView tv2 = new TextView(getContext());
+        tv2.setText("Only " + setMenu.getPrice() + " Baht!!");
+        tv2.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        tv2.setTypeface(tv2.getTypeface(), Typeface.BOLD_ITALIC);
+        layout.addView(tv2);
         Button addToCart = new Button(getContext());
         addToCart.setText("Add To Order");
         layout.addView(addToCart);

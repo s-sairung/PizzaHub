@@ -28,6 +28,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 app:srcCompat="@drawable/flashdealsale" />
+
+            <TextView
+                android:id="@+id/textViewFD"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="This set contain:"
+                android:textSize="20sp" />
         </LinearLayout>
 
     </ScrollView>

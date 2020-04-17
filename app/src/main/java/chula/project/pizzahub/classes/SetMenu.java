@@ -40,15 +40,60 @@ public class SetMenu {
         return foodNames;
     }
 
+    public ArrayList<String> getFoodNameNoDup() {
+        ArrayList<String> foodNames = this.getAllFoodName();
+        int size = foodNames.size();
+        foodNames.add("temp");
+        ArrayList<String> foodNamesNoDup = new ArrayList<>();
+        if (!setMenu.isEmpty()) {
+            for (int i = 0; i < size; i++) {
+                if (!foodNames.get(i).equals(foodNames.get(i + 1))) {
+                    foodNamesNoDup.add(foodNames.get(i));
+                }
+            }
+        }
+        return foodNamesNoDup;
+    }
+
+    public ArrayList<String> getFoodSizeNoDup() {
+        ArrayList<String> foodNamesNoDup = this.getFoodNameNoDup();
+        ArrayList<String> foodSizeNoDup = new ArrayList<>();
+        if (!setMenu.isEmpty()) {
+            for (int i = 0; i < foodNamesNoDup.size(); i++) {
+                for (Food food : setMenu) {
+                    if (food instanceof FoodWithSize) {
+                        FoodWithSize fws = (FoodWithSize) food;
+                        if (foodNamesNoDup.get(i).equals(fws.getName())) {
+                            foodSizeNoDup.add(fws.getSizeNameArray()[0]);
+                            break;
+                        }
+                    }
+                    else {
+                        foodSizeNoDup.add("");
+                    }
+                }
+            }
+        }
+        return foodSizeNoDup;
+    }
+
     public ArrayList<Integer> getAllFoodAmount() {
         ArrayList<String> foodNames = this.getAllFoodName();
+        int size = foodNames.size();
+        foodNames.add("temp");
         ArrayList<Integer> foodAmount = new ArrayList<>();
-        String lastFoodname = "";
-        int cnt = 0;
-
-        //รอเขียน
-
-
+        int cnt = 1;
+        if (!setMenu.isEmpty()) {
+            for (int i = 0; i < size; i++) {
+                if (foodNames.get(i).equals(foodNames.get(i+1))) {
+                    cnt++;
+                }
+                else {
+                    foodAmount.add(cnt);
+                    cnt = 1;
+                }
+            }
+        }
         return foodAmount;
     }
 
@@ -68,9 +113,10 @@ public class SetMenu {
         this.price = price;
     }
 
-    public int getFoodAmount() {
+    public int getFoodArrayListSize() {
         return setMenu.size();
     }
+
 
     @Override
     public String toString() {

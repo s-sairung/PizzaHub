@@ -199,7 +199,7 @@ public class FileInteract {
         }
     }
 
-    public static void updateOrder(Context context, SetMenu setMenu) {
+    public static void addNewOrder(Context context, SetMenu setMenu) {
         String string = "";
         InputStream input = null;
         try {
@@ -227,6 +227,8 @@ public class FileInteract {
                 }
             }
         }
+
+        string += "\n";
 
 
 
