@@ -18,33 +18,17 @@ import androidx.fragment.app.FragmentTransaction;
 import chula.project.pizzahub.classes.FileInteract;
 import chula.project.pizzahub.classes.InputStringConvert;
 
+
 public class OrderFragment extends Fragment implements View.OnClickListener {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollOrder);
         Button clearOrder = (Button) view.findViewById(R.id.clearOrderButton);
         clearOrder.setOnClickListener(this);
-
-//        final TextView rawOrder = new TextView(getContext());
-//        rawOrder.setText(FileInteract.readRawOrderFile(getContext()));
-//        rawOrder.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-//        layout.addView(rawOrder);
-
-        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
-//        for (String order : processedOrder) {
-//            if (!order.equals("")) {
-//                TextView orderTextView = new TextView(getContext());
-//                orderTextView.setText(order);
-//                orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-//                layout.addView(orderTextView);
-//                Button removeButton = new Button(getContext());
-//                removeButton.setText("Remove this Order");
-//                layout.addView(removeButton);
-//            }
-//        }
 
         for (int i = 0; i < processedOrder.length; i++) {
             String order = processedOrder[i];

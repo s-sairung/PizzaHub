@@ -23,7 +23,8 @@ import chula.project.pizzahub.classes.InputStringConvert;
 
 public class OthersFragment extends Fragment implements View.OnClickListener {
 
-    ArrayList<Food> foodArrayList = new ArrayList<>();
+    private ArrayList<Food> foodArrayList = new ArrayList<>();
+    private ArrayList<Integer> idList = new ArrayList<>();
 
     @Nullable
     @Override
@@ -46,25 +47,30 @@ public class OthersFragment extends Fragment implements View.OnClickListener {
             layout.addView(image);
             for (int j = 0; j < foods.size(); j++) {
                 Food food = foods.get(j);
-                System.out.println(food);
                 if (food instanceof FoodNoSize) {
+                    FoodNoSize fns = (FoodNoSize) food;
+                    FoodNoSize fns2 = new FoodNoSize(fns.getName(), fns.getTime(), fns.getPrice());
                     Button button = new Button(getContext());
-                    button.setText(((FoodNoSize) food).toButton());
+                    button.setText(fns2.toButton());
                     button.setId(i*100+j*10);
                     button.setOnClickListener(this);
                     layout.addView(button);
-                    foodArrayList.add(food);
+                    foodArrayList.add(fns2);
+                    idList.add(i*100+j*10);
                 }
                 else if (food instanceof FoodWithSize) {
                     FoodWithSize fws = (FoodWithSize) food;
                     String[] sizes = fws.getSizeNameArray();
                     for (int l = 0; l < sizes.length; l++) {
+                        FoodWithSize fws2 = new FoodWithSize(fws.getName());
+                        fws2.addSize(sizes[l], fws.getTime(sizes[l]), fws.getPrice(sizes[l]));
                         Button button = new Button(getContext());
-                        button.setText(fws.toButton(sizes[l], (fws.getPrice(sizes[l]))));
+                        button.setText(fws2.toButton(sizes[l], (fws2.getPrice(sizes[l]))));
                         button.setId(i*100+j*10+l);
                         button.setOnClickListener(this);
                         layout.addView(button);
-                        foodArrayList.add(food);
+                        foodArrayList.add(fws2);
+                        idList.add(i*100+j*10+l);
                     }
                 }
             }
@@ -73,82 +79,25 @@ public class OthersFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-            case 0:
-                if (foodArrayList.get(0) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(0);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 10:
-                if (foodArrayList.get(1) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(1);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 100:
-                if (foodArrayList.get(2) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(2);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 110:
-                if (foodArrayList.get(3) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(3);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 120:
-                if (foodArrayList.get(4) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(4);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 200:
-                if (foodArrayList.get(5) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(5);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 210:
-                if (foodArrayList.get(6) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(6);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 220:
-                if (foodArrayList.get(7) instanceof FoodNoSize) {
-                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(7);
-                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
-                }
-                break;
-            case 300:
-                if (foodArrayList.get(8) instanceof FoodWithSize) {
-                    FoodWithSize fws = (FoodWithSize) foodArrayList.get(8);
-                    FileInteract.addNewOrder(getContext(), (fws.toOrder(fws.getCategory(), "0.5L", 15.0)));
-                }
-                break;
-            case 301:
-                if (foodArrayList.get(9) instanceof FoodWithSize) {
-                    FoodWithSize fws = (FoodWithSize) foodArrayList.get(9);
-                    FileInteract.addNewOrder(getContext(), (fws.toOrder(fws.getCategory(), "1L", 20.0)));
-                }
-                break;
-            case 310:
-                if (foodArrayList.get(10) instanceof FoodWithSize) {
-                    FoodWithSize fws = (FoodWithSize) foodArrayList.get(10);
-                    FileInteract.addNewOrder(getContext(), (fws.toOrder(fws.getCategory(), "0.5L", 15.0)));
-                }
-                break;
-            case 311:
-                if (foodArrayList.get(11) instanceof FoodWithSize) {
-                    FoodWithSize fws = (FoodWithSize) foodArrayList.get(11);
-                    FileInteract.addNewOrder(getContext(), (fws.toOrder(fws.getCategory(), "1L", 20.0)));
-                }
-                break;
-            default: break;
-        }
+        addOrder(v.getId());
         Toast.makeText(getActivity(),"Added to Order", Toast.LENGTH_SHORT).show();
+    }
+
+    private void addOrder(int butIdCase) {
+        for (int i = 0; i < idList.size(); i++) {
+            if (idList.get(i) == butIdCase) {
+                if (foodArrayList.get(i) instanceof FoodNoSize) {
+                    FoodNoSize fns = (FoodNoSize) foodArrayList.get(i);
+                    FileInteract.addNewOrder(getContext(), (fns.toOrder(fns.getCategory())));
+                    break;
+                }
+                else {
+                    FoodWithSize fws = (FoodWithSize) foodArrayList.get(i);
+                    FileInteract.addNewOrder(getContext(), (fws.toOrder(fws.getCategory(), fws.getSizeNameArray()[0], fws.getPrice(fws.getSizeNameArray()[0]))));
+                    break;
+                }
+            }
+        }
     }
 
 }

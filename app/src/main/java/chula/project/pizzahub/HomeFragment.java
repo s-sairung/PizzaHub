@@ -31,13 +31,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 //        for(int i = 0; i < fm.getBackStackEntryCount(); ++i) {
 //            fm.popBackStack();
 //        }
+        ArrayList<String> categories = InputStringConvert.getMainCategoriesArrayList(InputStringConvert.getCategories(FileInteract.readInputFile(getContext())));
 
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ImageButton imageButton = (ImageButton) view.findViewById(R.id.imageButtonFlash);
         imageButton.setOnClickListener(this);
 
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScroll);
-        ArrayList<String> categories = InputStringConvert.getMainCategoriesArrayList(InputStringConvert.getCategories(FileInteract.readInputFile(getContext())));
 
         for (int i = 0; i < categories.size(); i++) {
             ImageView image = new ImageView(getContext());
@@ -67,36 +67,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             case R.id.imageButtonFlash:
                 newFragment = new FlashdealFragment();
                 break;
-            case 0:
-                category = categories.get(0);
-                newFragment = FragmentAssist.getFragment(category);
-                break;
-            case 1:
-                category = categories.get(1);
-                newFragment = FragmentAssist.getFragment(category);
-                break;
-            case 2:
-                category = categories.get(2);
-                newFragment = FragmentAssist.getFragment(category);
-                break;
-            case 3:
-                category = categories.get(3);
-                newFragment = FragmentAssist.getFragment(category);
-                break;
-            case 4:
-                category = categories.get(4);
-                newFragment = FragmentAssist.getFragment(category);
-                break;
-            case 5:
-                category = categories.get(5);
-                newFragment = FragmentAssist.getFragment(category);
-                break;
             default:
-                newFragment = new OthersFragment();
+                category = categories.get(v.getId());
+                newFragment = getFragment(category);
                 break;
         }
         transaction.replace(R.id.fragment_container, newFragment);
         transaction.addToBackStack(null);
         transaction.commit();
     }
+
+    private static Fragment getFragment(String cat) {
+        Fragment fragment;
+        switch (cat) {
+            case "Pizza": fragment = new PizzaFragment(); break;
+            case "Others": fragment = new OthersFragment(); break;
+            case "Combo Set": fragment = new SetComboFragment(); break;
+            case "Family Set": fragment = new FamilyFragment(); break;
+            default: fragment = new OthersFragment(); break;
+        }
+        return fragment;
+    }
+
 }

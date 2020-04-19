@@ -9,16 +9,7 @@ import chula.project.pizzahub.SetComboFragment;
 
 public class FragmentAssist {
 
-    public static Fragment getFragment(String cat) {
-        Fragment fragment;
-        switch (cat) {
-            case "Pizza": fragment = new PizzaFragment(); break;
-            case "Others": fragment = new OthersFragment(); break;
-            case "Combo Set": fragment = new SetComboFragment(); break;
-            case "Family Set": fragment = new FamilyFragment(); break;
-            default: fragment = new OthersFragment(); break;
-        }
-        return fragment;
-    }
+
+
 
 }
