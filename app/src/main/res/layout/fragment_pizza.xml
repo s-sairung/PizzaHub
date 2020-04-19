@@ -18,79 +18,79 @@
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:padding="10dp"
-                android:text="                                                 Hawaiian"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="                                                 Hawaiian"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageButton
-                android:id="@+id/imageButtonHawaiian"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/hawaiian" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonHawaiian"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:srcCompat="@drawable/hawaiian" />-->
 
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dp"
-                android:text="                                                 Seafood"
-                android:textStyle="bold" />
+<!--            <TextView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="fill_parent"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="                                                 Seafood"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageButton
-                android:id="@+id/imageButtonSeafood"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/seafood" />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dp"
-                android:text="                                                   Pepperoni"
-                android:textStyle="bold" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonSeafood"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:srcCompat="@drawable/seafood" />-->
+<!--            <TextView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="fill_parent"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="                                                   Pepperoni"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageButton
-                android:id="@+id/imageButtonPepperoni"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/pepperoni" />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dp"
-                android:text="                                                   Ham and Crab stick"
-                android:textStyle="bold" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonPepperoni"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:srcCompat="@drawable/pepperoni" />-->
+<!--            <TextView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="fill_parent"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="                                                   Ham and Crab stick"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageButton
-                android:id="@+id/imageButtonHamCrab"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/hamandcrab" />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dp"
-                android:text="                                                   Double Cheese"
-                android:textStyle="bold" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonHamCrab"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:srcCompat="@drawable/hamandcrab" />-->
+<!--            <TextView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="fill_parent"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="                                                   Double Cheese"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageButton
-                android:id="@+id/imageButtonDoubleCheese"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/doublecheese" />
-            <TextView
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:padding="10dp"
-                android:text="                                                   Meat Deluxe"
-                android:textStyle="bold" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonDoubleCheese"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:srcCompat="@drawable/doublecheese" />-->
+<!--            <TextView-->
+<!--                android:layout_width="fill_parent"-->
+<!--                android:layout_height="fill_parent"-->
+<!--                android:padding="10dp"-->
+<!--                android:text="                                                   Meat Deluxe"-->
+<!--                android:textStyle="bold" />-->
 
-            <ImageButton
-                android:id="@+id/imageButtonMeatDeluxe"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:srcCompat="@drawable/meatdeluxe" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/imageButtonMeatDeluxe"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:srcCompat="@drawable/meatdeluxe" />-->
 
 
         </LinearLayout>
