@@ -27,6 +27,8 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollOrder);
+        Button checkout = (Button) view.findViewById(R.id.checkoutButton);
+        checkout.setOnClickListener(this);
         Button clearOrder = (Button) view.findViewById(R.id.clearOrderButton);
         clearOrder.setOnClickListener(this);
 
@@ -45,24 +47,29 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
                 layout.addView(removeButton);
             }
         }
-
         return view;
     }
 
     public void onClick(View v) {
         String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
+        Fragment newFragment;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
+            case R.id.checkoutButton:
+                newFragment = new SummaryFragment();
+                transaction.addToBackStack(null);
+                break;
             case R.id.clearOrderButton:
                 FileInteract.clearOrder(getContext());
+                newFragment = new OrderFragment();
                 Toast.makeText(getActivity(),"Order Cleared", Toast.LENGTH_SHORT).show();
                 break;
             default:
                 FileInteract.removeOrder(getContext(), processedOrder, v.getId());
+                newFragment = new OrderFragment();
                 Toast.makeText(getActivity(),"Order Removed", Toast.LENGTH_SHORT).show();
                 break;
         }
-        Fragment newFragment = new OrderFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
         transaction.replace(R.id.fragment_container, newFragment);
         transaction.commit();
     }

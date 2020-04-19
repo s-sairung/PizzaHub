@@ -32,7 +32,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/orderButton"
+        android:id="@+id/checkoutButton"
         android:layout_width="199dp"
         android:layout_height="56dp"
         android:layout_alignParentTop="true"
@@ -40,7 +40,7 @@
         android:layout_marginTop="540dp"
         android:layout_marginEnd="183dp"
         android:padding="10dp"
-        android:text="Submit" />
+        android:text="Proceed to Checkout" />
 
     <Button
         android:id="@+id/clearOrderButton"
