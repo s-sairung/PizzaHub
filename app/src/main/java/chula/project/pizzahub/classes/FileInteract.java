@@ -258,7 +258,7 @@ public class FileInteract {
         }
     }
 
-    public static void addNewOrder(Context context, String stringInput) {
+    public static void addNewOrder(Context context, String newOrderInput) {
         String string = "";
         InputStream input = null;
         try {
@@ -290,7 +290,41 @@ public class FileInteract {
         string = string.trim();
         string += "\n";
         string += "\n";
-        string += stringInput;
+        string += newOrderInput;
+        string = string.trim();
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("order.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void removeOrder(Context context, String[] curOrderArray, int index) {
+        String string = "";
+        curOrderArray[index] = "";
+        for (String order : curOrderArray) {
+            string += order;
+            string = string.trim();
+            string += "\n";
+        }
+
         string = string.trim();
 
         FileOutputStream fos = null;

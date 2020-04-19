@@ -447,4 +447,22 @@ public class InputStringConvert {
         return string.trim();
     }
 
+    public static String[] getOrderArray(String rawOrder) {
+        String string = "";
+        Scanner in = new Scanner(rawOrder);
+        while (in.hasNextLine()) {
+            String line = in.nextLine();
+            if (line.equals("")) {
+                string += "---------------";
+            }
+            else {
+                string += line;
+            }
+            string += "\n";
+        }
+        string = string.trim();
+        String[] orders = string.split("---------------");
+        return orders;
+    }
+
 }
