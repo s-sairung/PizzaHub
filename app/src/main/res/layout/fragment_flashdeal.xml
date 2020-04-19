@@ -33,7 +33,7 @@
                 android:id="@+id/textViewFD"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="This set contain:"
+                android:text="This set contains:"
                 android:textSize="20sp" />
         </LinearLayout>
 
