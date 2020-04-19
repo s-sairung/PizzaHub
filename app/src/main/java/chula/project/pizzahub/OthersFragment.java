@@ -1,12 +1,15 @@
 package chula.project.pizzahub;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -36,6 +39,11 @@ public class OthersFragment extends Fragment implements View.OnClickListener {
         for (int i = 0; i < categories.size(); i++) {
             String specificCat = InputStringConvert.getSpecificFood(InputStringConvert.getFood(FileInteract.readInputFile(getContext())), categories.get(i));
             ArrayList<Food> foods = InputStringConvert.getSpecificFoodArrayList(specificCat);
+            TextView tv = new TextView(getContext());
+            tv.setText("        " + categories.get(i));
+            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+            tv.setTypeface(tv.getTypeface(), Typeface.BOLD);
+            layout.addView(tv);
             ImageView image = new ImageView(getContext());
             switch (categories.get(i)) {
                 case "Drinks": image.setImageResource(R.drawable.catodrinks); break;
