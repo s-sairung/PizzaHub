@@ -46,6 +46,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
                 removeButton.setOnClickListener(this);
                 layout.addView(removeButton);
             }
+
         }
         return view;
     }
