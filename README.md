@@ -6,5 +6,5 @@ one of the *Pizzie Pizza* projects
 - [s-sairung](https://github.com/s-sairung)
 
 ## progression
-- [x] 60% working
-- [ ] 100% working
+- [x] 60% usable
+- [ ] 100% usable
