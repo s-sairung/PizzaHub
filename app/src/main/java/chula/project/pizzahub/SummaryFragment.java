@@ -16,6 +16,10 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import chula.project.pizzahub.classes.FileInteract;
 import chula.project.pizzahub.classes.InputStringConvert;
 
@@ -55,6 +59,15 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         priceTextView.setTypeface(priceTextView.getTypeface(), Typeface.BOLD);
         layout.addView(priceTextView);
+
+        Date c = Calendar.getInstance().getTime();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String formattedDate = df.format(c);
+        TextView timeTextView = new TextView(getContext());
+        timeTextView.setText("Date: " + formattedDate);
+        timeTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        timeTextView.setTypeface(timeTextView.getTypeface(), Typeface.BOLD);
+        layout.addView(timeTextView);
 
         Button confirmButton = new Button(getContext());
         confirmButton.setText("Confirm and Pay");
