@@ -55,7 +55,7 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         }
 
         TextView priceTextView = new TextView(getContext());
-        priceTextView.setText("Total: ฿" + totalPrice);
+        priceTextView.setText("\nTotal: ฿" + totalPrice);
         priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         priceTextView.setTypeface(priceTextView.getTypeface(), Typeface.BOLD);
         layout.addView(priceTextView);
