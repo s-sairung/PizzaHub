@@ -1,11 +1,14 @@
 package chula.project.pizzahub;
 
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.content.Intent;
+import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -23,6 +26,21 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollSummary);
         String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
 
+        for (int i = 0; i < processedOrder.length; i++) {
+            String order = processedOrder[i];
+            order = order.trim();
+            if (!order.equals("")) {
+                TextView orderTextView = new TextView(getContext());
+                orderTextView.setText(order);
+                orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                layout.addView(orderTextView);
+            }
+        }
+
+        Button confirmButton = new Button(getContext());
+        confirmButton.setText("Confirm and Pay");
+        confirmButton.setOnClickListener(this);
+        layout.addView(confirmButton);
 
         return view;
     }

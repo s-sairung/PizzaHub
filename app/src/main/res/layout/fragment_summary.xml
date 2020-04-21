@@ -19,12 +19,8 @@
             android:layout_height="fill_parent"
             android:orientation="vertical">
 
-            <Button
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="Submit"/>
-
 
         </LinearLayout>
     </ScrollView>
+
 </RelativeLayout>
