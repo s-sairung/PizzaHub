@@ -450,19 +450,23 @@ public class InputStringConvert {
     public static String[] getOrderArray(String rawOrder) {
         String string = "";
         Scanner in = new Scanner(rawOrder);
-        while (in.hasNextLine()) {
-            String line = in.nextLine();
-            if (line.equals("")) {
-                string += "---------------";
+        if (!rawOrder.isEmpty()) {
+            while (in.hasNextLine()) {
+                String line = in.nextLine();
+                if (line.equals("")) {
+                    string += "---------------";
+                }
+                else {
+                    string += line;
+                }
+                string += "\n";
             }
-            else {
-                string += line;
-            }
-            string += "\n";
+            string = string.trim();
+            String[] orders = string.split("---------------");
+            return orders;
         }
-        string = string.trim();
-        String[] orders = string.split("---------------");
-        return orders;
+        String[] noOrder = {};
+        return noOrder;
     }
 
 }

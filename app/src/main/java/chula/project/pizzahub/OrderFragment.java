@@ -24,9 +24,9 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollOrder);
+        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
         Button checkout = (Button) view.findViewById(R.id.checkoutButton);
         checkout.setOnClickListener(this);
         Button clearOrder = (Button) view.findViewById(R.id.clearOrderButton);
@@ -46,7 +46,6 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
                 removeButton.setOnClickListener(this);
                 layout.addView(removeButton);
             }
-
         }
         return view;
     }
@@ -57,8 +56,14 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.checkoutButton:
-                newFragment = new SummaryFragment();
-                transaction.addToBackStack(null);
+                if (processedOrder.length != 0) {
+                    newFragment = new SummaryFragment();
+                    transaction.addToBackStack(null);
+                }
+                else {
+                    Toast.makeText(getActivity(),"Order cannot be empty", Toast.LENGTH_SHORT).show();
+                    newFragment = new OrderFragment();
+                }
                 break;
             case R.id.clearOrderButton:
                 FileInteract.clearOrder(getContext());
