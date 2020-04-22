@@ -87,13 +87,13 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
                 }
                 else {
                     newFragment = new OrderFragment();
-                    DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
+                    DialogFragment alertDialog = new OrderLoginFragmentAlertDialog();
                     alertDialog.show(getFragmentManager(), "LoginAlert");
                     break;
                 }
             case R.id.clearOrderButton:
                 newFragment = new OrderFragment();
-                DialogFragment clearDialog = OrderClearFragmentAlertDialog.newInstance();
+                DialogFragment clearDialog = new OrderClearFragmentAlertDialog();
                 clearDialog.show(getFragmentManager(), "ClearAlert");
                 break;
             default:

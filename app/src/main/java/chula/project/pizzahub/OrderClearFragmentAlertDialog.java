@@ -14,10 +14,6 @@ import chula.project.pizzahub.classes.FileInteract;
 
 public class OrderClearFragmentAlertDialog extends DialogFragment {
 
-    public static OrderClearFragmentAlertDialog newInstance() {
-        return new OrderClearFragmentAlertDialog();
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 

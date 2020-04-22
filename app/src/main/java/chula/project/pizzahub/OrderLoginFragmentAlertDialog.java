@@ -9,10 +9,6 @@ import androidx.fragment.app.DialogFragment;
 
 public class OrderLoginFragmentAlertDialog extends DialogFragment {
 
-    public static OrderLoginFragmentAlertDialog newInstance() {
-        return new OrderLoginFragmentAlertDialog();
-    }
-
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
 
