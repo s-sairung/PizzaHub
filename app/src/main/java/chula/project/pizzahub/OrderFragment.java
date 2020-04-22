@@ -92,4 +92,5 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
         alertDialog.show(getFragmentManager(), "LoginAlert");
     }
+
 }
