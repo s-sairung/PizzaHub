@@ -1,6 +1,7 @@
 package chula.project.pizzahub;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,7 +61,8 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
                 if (processedOrder.length != 0) {
                     if (!Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
                         newFragment = new OrderFragment();
-                        showDialog();
+                        DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
+                        alertDialog.show(getFragmentManager(), "LoginAlert");
                         break;
                     }
                     newFragment = new SummaryFragment();
@@ -74,9 +76,9 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
                 }
 
             case R.id.clearOrderButton:
-                FileInteract.clearOrder(getContext());
                 newFragment = new OrderFragment();
-                Toast.makeText(getActivity(),"Order Cleared", Toast.LENGTH_SHORT).show();
+                DialogFragment clearDialog = OrderClearFragmentAlertDialog.newInstance();
+                clearDialog.show(getFragmentManager(), "ClearAlert");
                 break;
             default:
                 FileInteract.removeOrder(getContext(), processedOrder, v.getId());
@@ -86,11 +88,6 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         }
         transaction.replace(R.id.fragment_container, newFragment);
         transaction.commit();
-    }
-
-    public void showDialog() {
-        DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
-        alertDialog.show(getFragmentManager(), "LoginAlert");
     }
 
 }
