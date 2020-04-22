@@ -58,23 +58,39 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.checkoutButton:
-                if (processedOrder.length != 0) {
-                    if (!Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
-                        newFragment = new OrderFragment();
-                        DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
-                        alertDialog.show(getFragmentManager(), "LoginAlert");
+//                if (processedOrder.length != 0) {
+//                    if (!Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
+//                        newFragment = new OrderFragment();
+//                        DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
+//                        alertDialog.show(getFragmentManager(), "LoginAlert");
+//                        break;
+//                    }
+
+//                }
+//                else {
+//                    Toast.makeText(getActivity(),"Order cannot be empty", Toast.LENGTH_SHORT).show();
+//                    newFragment = new OrderFragment();
+//                    break;
+//                }
+                if (Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
+                    if (processedOrder.length != 0) {
+                        newFragment = new SummaryFragment();
+                        transaction.addToBackStack(null);
                         break;
                     }
-                    newFragment = new SummaryFragment();
-                    transaction.addToBackStack(null);
-                    break;
+                    else {
+                        newFragment = new OrderFragment();
+                        DialogFragment alertDialog = new OrderEmptyFragmentAlertDialog();
+                        alertDialog.show(getFragmentManager(), "EmptyAlert");
+                        break;
+                    }
                 }
                 else {
-                    Toast.makeText(getActivity(),"Order cannot be empty", Toast.LENGTH_SHORT).show();
                     newFragment = new OrderFragment();
+                    DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
+                    alertDialog.show(getFragmentManager(), "LoginAlert");
                     break;
                 }
-
             case R.id.clearOrderButton:
                 newFragment = new OrderFragment();
                 DialogFragment clearDialog = OrderClearFragmentAlertDialog.newInstance();
