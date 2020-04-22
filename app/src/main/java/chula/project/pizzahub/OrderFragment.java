@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -57,14 +58,21 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.checkoutButton:
                 if (processedOrder.length != 0) {
+                    if (!Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
+                        newFragment = new OrderFragment();
+                        showDialog();
+                        break;
+                    }
                     newFragment = new SummaryFragment();
                     transaction.addToBackStack(null);
+                    break;
                 }
                 else {
                     Toast.makeText(getActivity(),"Order cannot be empty", Toast.LENGTH_SHORT).show();
                     newFragment = new OrderFragment();
+                    break;
                 }
-                break;
+
             case R.id.clearOrderButton:
                 FileInteract.clearOrder(getContext());
                 newFragment = new OrderFragment();
@@ -80,4 +88,8 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         transaction.commit();
     }
 
+    public void showDialog() {
+        DialogFragment alertDialog = OrderLoginFragmentAlertDialog.newInstance();
+        alertDialog.show(getFragmentManager(), "LoginAlert");
+    }
 }
