@@ -10,11 +10,14 @@ import android.content.Intent;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -69,16 +72,32 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         timeTextView.setTypeface(timeTextView.getTypeface(), Typeface.BOLD);
         layout.addView(timeTextView);
 
-        Button confirmButton = new Button(getContext());
-        confirmButton.setText("Confirm and Pay");
-        confirmButton.setOnClickListener(this);
-        layout.addView(confirmButton);
+        //  Button confirmButton = new Button(getContext());
+        //  confirmButton.setText("Confirm and Pay");
+        //  confirmButton.setOnClickListener(this);
+        //  layout.addView(confirmButton);
 
         return view;
     }
 
     public void onClick(View v) {
+        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
+        Fragment newFragment;
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        switch (v.getId()) {
+            case R.id.confirmButton:
+                    if (Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
+                        newFragment = new ReceiptFragment();
+                        transaction.addToBackStack(null);
+                        break;
+                    }
 
+                    }
+                }
+
+        }
+        //transaction.replace(R.id.fragment_container, newFragment);
+        //transaction.commit();
     }
 
 }
