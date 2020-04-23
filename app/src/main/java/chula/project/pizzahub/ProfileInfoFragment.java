@@ -36,7 +36,16 @@ public class ProfileInfoFragment extends Fragment {
         userID.setText(profile.getUserID());
         password.setText(InputStringConvert.convertStar(profile.getPassword()));
         cardNo.setText(profile.getCardNumber());
-
+        Button logoutButton = (Button) view.findViewById(R.id.logoutButton);
+        logoutButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Fragment newFragment = new ProfileLoginFragment();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                transaction.replace(R.id.fragment_container, newFragment);
+                transaction.commit();
+            }
+        });
         return view;
     }
 

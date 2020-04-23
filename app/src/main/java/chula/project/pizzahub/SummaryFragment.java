@@ -86,18 +86,29 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.confirmButton:
+                if (processedOrder.length != 0) {
                     if (Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
                         newFragment = new ReceiptFragment();
                         transaction.addToBackStack(null);
                         break;
                     }
-
+                    else {
+                        newFragment = new OrderFragment();
+                        DialogFragment alertDialog = new OrderLoginFragmentAlertDialog();
+                        alertDialog.show(getFragmentManager(), "LoginAlert");
+                        break;
                     }
+                }
+                else {
+                    newFragment = new OrderFragment();
+                    DialogFragment alertDialog = new OrderEmptyFragmentAlertDialog();
+                    alertDialog.show(getFragmentManager(), "EmptyAlert");
+                    break;
                 }
 
         }
         //transaction.replace(R.id.fragment_container, newFragment);
-        //transaction.commit();
+        transaction.commit();
     }
 
 }
