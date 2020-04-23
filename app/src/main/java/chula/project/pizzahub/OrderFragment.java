@@ -58,24 +58,24 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.checkoutButton:
-                if (Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
-                    if (processedOrder.length != 0) {
+                if (processedOrder.length != 0) {
+                    if (Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
                         newFragment = new SummaryFragment();
                         transaction.addToBackStack(null);
                         break;
                     }
                     else {
                         newFragment = new OrderFragment();
-                        DialogFragment alertDialog = new OrderEmptyFragmentAlertDialog();
-                        alertDialog.show(getFragmentManager(), "EmptyAlert");
+                        DialogFragment alertDialog = new OrderLoginFragmentAlertDialog();
+                        alertDialog.show(getFragmentManager(), "LoginAlert");
                         break;
                     }
                 }
                 else {
-                    newFragment = new OrderFragment();
-                    DialogFragment alertDialog = new OrderLoginFragmentAlertDialog();
-                    alertDialog.show(getFragmentManager(), "LoginAlert");
-                    break;
+                        newFragment = new OrderFragment();
+                        DialogFragment alertDialog = new OrderEmptyFragmentAlertDialog();
+                        alertDialog.show(getFragmentManager(), "EmptyAlert");
+                        break;
                 }
             case R.id.clearOrderButton:
                 newFragment = new OrderFragment();
