@@ -41,6 +41,7 @@ public class ProfileInfoFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Fragment newFragment = new ProfileLoginFragment();
+                Toast.makeText(getActivity(),"Logout Successful", Toast.LENGTH_SHORT).show();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.commit();

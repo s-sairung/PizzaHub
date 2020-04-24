@@ -72,6 +72,9 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         timeTextView.setTypeface(timeTextView.getTypeface(), Typeface.BOLD);
         layout.addView(timeTextView);
 
+        Button confirmButton = (Button) view.findViewById(R.id.confirmButton);
+        confirmButton.setOnClickListener(this);
+
         //  Button confirmButton = new Button(getContext());
         //  confirmButton.setText("Confirm and Pay");
         //  confirmButton.setOnClickListener(this);
@@ -81,33 +84,15 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
         Fragment newFragment;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
             case R.id.confirmButton:
-                if (processedOrder.length != 0) {
-                    if (Boolean.parseBoolean(FileInteract.loadLoginStatus(getContext()))) {
-                        newFragment = new ReceiptFragment();
-                        transaction.addToBackStack(null);
-                        break;
-                    }
-                    else {
-                        newFragment = new OrderFragment();
-                        DialogFragment alertDialog = new OrderLoginFragmentAlertDialog();
-                        alertDialog.show(getFragmentManager(), "LoginAlert");
-                        break;
-                    }
-                }
-                else {
-                    newFragment = new OrderFragment();
-                    DialogFragment alertDialog = new OrderEmptyFragmentAlertDialog();
-                    alertDialog.show(getFragmentManager(), "EmptyAlert");
-                    break;
-                }
-
+                newFragment = new ReceiptFragment();
+                break;
+            default: newFragment = new SummaryFragment(); break;
         }
-        //transaction.replace(R.id.fragment_container, newFragment);
+        transaction.replace(R.id.fragment_container, newFragment);
         transaction.commit();
     }
 
