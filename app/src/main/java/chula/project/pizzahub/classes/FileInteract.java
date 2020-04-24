@@ -437,15 +437,16 @@ public class FileInteract {
         }
 
         string = string.trim();
-        string += "\n\n";
-        string += "--order--";
-        string += "\n";
+        if (!string.isEmpty()) {
+            string += "\n";
+            string += "--next-order--";
+            string += "\n";
+        }
         string += rawOrder.trim();
         string += "\n";
         string += "Price:";
         string += orderPrice;
-        string += "\n";
-        string += "---------";
+
         string = string.trim();
 
         FileOutputStream fos = null;

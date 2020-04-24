@@ -469,4 +469,13 @@ public class InputStringConvert {
         return noOrder;
     }
 
+    public static String[] getHistoryArray(String rawHistory) {
+        if (!rawHistory.isEmpty()) {
+            String[] history = rawHistory.split("--next-order--");
+            return history;
+        }
+        String[] noHistory = {};
+        return noHistory;
+    }
+
 }
