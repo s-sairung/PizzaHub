@@ -75,10 +75,10 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         Button confirmButton = (Button) view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(this);
 
-        //  Button confirmButton = new Button(getContext());
-        //  confirmButton.setText("Confirm and Pay");
-        //  confirmButton.setOnClickListener(this);
-        //  layout.addView(confirmButton);
+//          Button confirmButton = new Button(getContext());
+//          confirmButton.setText("Confirm and Pay");
+//          confirmButton.setOnClickListener(this);
+//          layout.addView(confirmButton);
 
         return view;
     }
@@ -89,6 +89,7 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.confirmButton:
                 newFragment = new ReceiptFragment();
+                FileInteract.addNewHistory(getContext(), FileInteract.readRawOrderFile(getContext()));
                 FileInteract.clearOrder(getContext());
                 break;
             default: newFragment = new SummaryFragment(); break;

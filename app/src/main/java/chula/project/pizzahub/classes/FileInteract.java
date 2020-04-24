@@ -406,8 +406,8 @@ public class FileInteract {
         }
     }
 
-    //ยังไม่เสร็จ
     public static void addNewHistory(Context context, String rawOrder) {
+        if (rawOrder.isEmpty()) return;
         String string = "";
         InputStream input = null;
         try {
@@ -439,9 +439,38 @@ public class FileInteract {
         string = string.trim();
         string += "\n";
         string += "\n";
-        string += rawOrder;
+        string += "--order--";
+        string += "\n";
+        string += rawOrder.trim();
+        string += "\n";
+        string += "---------";
         string = string.trim();
 
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("history.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void clearHistory(Context context) {
+        String string = "";
         FileOutputStream fos = null;
         try {
             fos = context.openFileOutput("history.txt", MODE_PRIVATE);
