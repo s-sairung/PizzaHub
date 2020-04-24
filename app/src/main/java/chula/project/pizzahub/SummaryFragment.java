@@ -89,6 +89,7 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.confirmButton:
                 newFragment = new ReceiptFragment();
+                FileInteract.clearOrder(getContext());
                 break;
             default: newFragment = new SummaryFragment(); break;
         }
