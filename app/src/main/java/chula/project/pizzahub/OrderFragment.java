@@ -1,5 +1,6 @@
 package chula.project.pizzahub;
 
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.util.TypedValue;
@@ -38,10 +39,22 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
             String order = processedOrder[i];
             order = order.trim();
             if (!order.equals("")) {
-                TextView orderTextView = new TextView(getContext());
-                orderTextView.setText(order);
-                orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-                layout.addView(orderTextView);
+//                TextView orderTextView = new TextView(getContext());
+//                orderTextView.setText(order);
+//                orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+//                layout.addView(orderTextView);
+                String[] orderSplit = order.split("\n");
+                TextView topicTextView = new TextView(getContext());
+                topicTextView.setText(orderSplit[0]);
+                topicTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                topicTextView.setTypeface(topicTextView.getTypeface(), Typeface.BOLD_ITALIC);
+                layout.addView(topicTextView);
+                for (int j = 1; j < orderSplit.length; j++) {
+                    TextView orderTextView = new TextView(getContext());
+                    orderTextView.setText(orderSplit[j]);
+                    orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                    layout.addView(orderTextView);
+                }
                 Button removeButton = new Button(getContext());
                 removeButton.setText("Remove this Order");
                 removeButton.setId(i);
