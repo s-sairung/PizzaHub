@@ -406,7 +406,7 @@ public class FileInteract {
         }
     }
 
-    public static void addNewHistory(Context context, String rawOrder) {
+    public static void addNewHistory(Context context, String rawOrder, double orderPrice) {
         if (rawOrder.isEmpty()) return;
         String string = "";
         InputStream input = null;
@@ -437,11 +437,13 @@ public class FileInteract {
         }
 
         string = string.trim();
-        string += "\n";
-        string += "\n";
+        string += "\n\n";
         string += "--order--";
         string += "\n";
         string += rawOrder.trim();
+        string += "\n";
+        string += "Price:";
+        string += orderPrice;
         string += "\n";
         string += "---------";
         string = string.trim();
@@ -492,6 +494,37 @@ public class FileInteract {
                 }
             }
         }
+    }
+
+    public static String readRawHistoryFile(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("history.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return string.trim();
     }
 
 

@@ -6,17 +6,13 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.content.Intent;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import java.text.SimpleDateFormat;
@@ -89,7 +85,7 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.confirmButton:
                 newFragment = new ReceiptFragment();
-                FileInteract.addNewHistory(getContext(), FileInteract.readRawOrderFile(getContext()));
+                FileInteract.addNewHistory(getContext(), FileInteract.readRawOrderFile(getContext()), totalPrice);
                 FileInteract.clearOrder(getContext());
                 break;
             default: newFragment = new SummaryFragment(); break;
