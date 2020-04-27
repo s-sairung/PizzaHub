@@ -46,7 +46,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
 
                 double orderPrice = Double.parseDouble(orderSplit[orderSplit.length - 3].replace("Price:", ""));
                 TextView priceTextView = new TextView(getContext());
-                priceTextView.setText("Total: " + orderPrice);
+                priceTextView.setText("\nTotal: " + orderPrice);
                 priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 priceTextView.setTypeface(priceTextView.getTypeface(), Typeface.BOLD);
                 layout.addView(priceTextView);

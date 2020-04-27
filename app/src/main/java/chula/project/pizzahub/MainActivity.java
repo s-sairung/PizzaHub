@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
 
         FileInteract.saveLoginStatus(getBaseContext(), false);
         FileInteract.clearHistory(getBaseContext());
+        FileInteract.clearReceiptNumber(getBaseContext());
+        FileInteract.clearOrder(getBaseContext());
 
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);

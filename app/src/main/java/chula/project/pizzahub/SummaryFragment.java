@@ -27,6 +27,8 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
 
     private double totalPrice;
     private String formattedDate;
+    private String receiptNo;
+
 
     @Nullable
     @Override
@@ -70,8 +72,6 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
         timeTextView.setTypeface(timeTextView.getTypeface(), Typeface.BOLD);
         layout.addView(timeTextView);
 
-        String receiptNo = FragmentAssist.receiptNumberGenerator();
-
         Button confirmButton = (Button) view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(this);
 
@@ -86,12 +86,13 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Fragment newFragment;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        String receiptNo = FragmentAssist.receiptNumberGenerator();
+        receiptNo = FragmentAssist.receiptNumberGenerator(getContext());
         switch (v.getId()) {
             case R.id.confirmButton:
                 newFragment = new ReceiptFragment();
                 FileInteract.addNewHistory(getContext(), FileInteract.readRawOrderFile(getContext()), totalPrice, formattedDate, receiptNo);
                 FileInteract.clearOrder(getContext());
+                FileInteract.addNewReceiptNumber(getContext(), receiptNo);
                 break;
             default: newFragment = new SummaryFragment(); break;
         }

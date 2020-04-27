@@ -4,6 +4,8 @@ package chula.project.pizzahub.classes;
 import android.content.Context;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 public class FragmentAssist {
@@ -23,7 +25,17 @@ public class FragmentAssist {
         return false;
     }
 
-    public static String receiptNumberGenerator() {
+    public static String receiptNumberGenerator(Context context) {
+        String[] processedReceiptNumbers = InputStringConvert.getReceiptNumberArray(FileInteract.readRawReceiptNoFile(context));
+        String receipt = genReceipt();
+        List<String> list = Arrays.asList(processedReceiptNumbers);
+        while (list.contains(receipt)) {
+            receipt = genReceipt();
+        }
+        return receipt;
+    }
+
+    private static String genReceipt() {
         final String alphabets = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
         final String numbers = "0123456789";
         String receiptNo = "";
