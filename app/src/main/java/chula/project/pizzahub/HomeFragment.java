@@ -58,6 +58,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
     public void onClick(View v) {
         ArrayList<String> categories = InputStringConvert.getMainCategoriesArrayList(InputStringConvert.getCategories(FileInteract.readInputFile(getContext())));
         String category;

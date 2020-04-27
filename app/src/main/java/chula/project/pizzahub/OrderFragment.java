@@ -70,6 +70,7 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
     public void onClick(View v) {
         Fragment newFragment;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();

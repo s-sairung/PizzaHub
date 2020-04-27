@@ -65,6 +65,7 @@ public class PizzaFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
     public void onClick(View v) {
         addOrder(v.getId());
         Toast.makeText(getActivity(),"Added to Order", Toast.LENGTH_SHORT).show();

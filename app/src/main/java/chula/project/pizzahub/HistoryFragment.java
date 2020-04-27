@@ -84,6 +84,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
+    @Override
     public void onClick(View v) {
         FileInteract.writeReceiptFile(getContext(), processedHistory[v.getId()]);
         Fragment newFragment = new ReceiptFragment();
