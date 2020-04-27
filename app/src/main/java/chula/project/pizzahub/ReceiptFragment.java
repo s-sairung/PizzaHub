@@ -21,13 +21,6 @@ public class ReceiptFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receipt, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollReceipt);
 
-        TextView receiptNoTextView = new TextView(getContext());
-        String receiptNo = FragmentAssist.receiptNumberGenerator();
-        receiptNoTextView.setText("\nReceipt Number: " + receiptNo);
-        receiptNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-        receiptNoTextView.setTypeface(receiptNoTextView.getTypeface(), Typeface.BOLD);
-        layout.addView(receiptNoTextView);
-
         return view;
     }
 
