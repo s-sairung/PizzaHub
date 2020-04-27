@@ -21,6 +21,8 @@ public class ReceiptFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receipt, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollReceipt);
 
+
+
         return view;
     }
 

@@ -33,9 +33,7 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
         for (int i = 0; i < historyArray.length; i++) {
             processedHistory[i] = historyArray[(historyArray.length-1)-i];
         }
-
         int orderNo = processedHistory.length;
-//        processedHistory = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
         for (int i = 0; i < processedHistory.length; i++) {
             String order = processedHistory[i];
             order = order.trim();
@@ -82,16 +80,13 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
                 layout.addView(viewDetailsButton);
             }
         }
-
-//        TextView rawHistory = new TextView(getContext());
-//        rawHistory.setText(FileInteract.readRawHistoryFile(getContext()));
-//        layout.addView(rawHistory);
-
         return view;
     }
 
     public void onClick(View v) {
+        switch (v.getId()) {
 
+        }
     }
 
 }
