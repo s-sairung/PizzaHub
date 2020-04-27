@@ -27,14 +27,22 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollHistory);
+        String[] historyArray = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
+        processedHistory = new String[historyArray.length];
 
-        processedHistory = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
+        for (int i = 0; i < historyArray.length; i++) {
+            processedHistory[i] = historyArray[(historyArray.length-1)-i];
+        }
+
+        int orderNo = processedHistory.length;
+//        processedHistory = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
         for (int i = 0; i < processedHistory.length; i++) {
             String order = processedHistory[i];
             order = order.trim();
             if (!order.equals("")) {
                 TextView topicTextView = new TextView(getContext());
-                topicTextView.setText("Order No: " + (i + 1));
+                topicTextView.setText("Order No: " + orderNo);
+                orderNo--;
                 topicTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 topicTextView.setTypeface(topicTextView.getTypeface(), Typeface.BOLD_ITALIC);
                 layout.addView(topicTextView);
