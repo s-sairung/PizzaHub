@@ -14,6 +14,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import chula.project.pizzahub.classes.CheckLogin;
 import chula.project.pizzahub.classes.FileInteract;
+import chula.project.pizzahub.classes.FragmentAssist;
 import chula.project.pizzahub.classes.Profile;
 
 public class ProfileLoginFragment extends Fragment {
@@ -43,7 +44,7 @@ public class ProfileLoginFragment extends Fragment {
             public void onClick(View v) {
                 String userID = userIDInput.getText().toString();
                 String password = passwordInput.getText().toString();
-                if (CheckLogin.checkLogin(userID, password, getContext())) {
+                if (FragmentAssist.checkLogin(userID, password, getContext())) {
                     Profile newProfile = new Profile(userID, password);
                     FileInteract.saveProfile(getContext(), newProfile);
                     FileInteract.saveLoginStatus(getContext(), true);

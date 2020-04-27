@@ -406,7 +406,7 @@ public class FileInteract {
         }
     }
 
-    public static void addNewHistory(Context context, String rawOrder, double orderPrice) {
+    public static void addNewHistory(Context context, String rawOrder, double orderPrice, String date, String receiptNumber) {
         if (rawOrder.isEmpty()) return;
         String string = "";
         InputStream input = null;
@@ -446,6 +446,12 @@ public class FileInteract {
         string += "\n";
         string += "Price:";
         string += orderPrice;
+        string += "\n";
+        string += "Date:";
+        string += date;
+        string += "\n";
+        string += "Receipt:";
+        string += receiptNumber;
 
         string = string.trim();
 

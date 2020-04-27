@@ -37,18 +37,34 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
                 topicTextView.setTypeface(topicTextView.getTypeface(), Typeface.BOLD_ITALIC);
                 layout.addView(topicTextView);
                 String[] orderSplit = order.split("\n");
-                for (int j = 0; j < orderSplit.length - 1; j++) {
+                for (int j = 0; j < orderSplit.length - 4; j++) {
                     TextView orderTextView = new TextView(getContext());
                     orderTextView.setText(orderSplit[j]);
                     orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     layout.addView(orderTextView);
                 }
-                double orderPrice = Double.parseDouble(orderSplit[orderSplit.length - 1].replace("Price:", ""));
+
+                double orderPrice = Double.parseDouble(orderSplit[orderSplit.length - 3].replace("Price:", ""));
                 TextView priceTextView = new TextView(getContext());
                 priceTextView.setText("Total: " + orderPrice);
                 priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-                priceTextView.setTypeface(topicTextView.getTypeface(), Typeface.BOLD);
+                priceTextView.setTypeface(priceTextView.getTypeface(), Typeface.BOLD);
                 layout.addView(priceTextView);
+
+                String date = orderSplit[orderSplit.length - 2].replace("Date:", "");
+                TextView dateTextView = new TextView(getContext());
+                dateTextView.setText("Order Date: " + date);
+                dateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                dateTextView.setTypeface(dateTextView.getTypeface(), Typeface.BOLD);
+                layout.addView(dateTextView);
+
+                String receiptNo = orderSplit[orderSplit.length - 1].replace("Receipt:", "");
+                TextView receiptNoTextView = new TextView(getContext());
+                receiptNoTextView.setText("Receipt Number: " + receiptNo);
+                receiptNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                receiptNoTextView.setTypeface(receiptNoTextView.getTypeface(), Typeface.BOLD);
+                layout.addView(receiptNoTextView);
+
                 Button viewDetailsButton = new Button(getContext());
                 viewDetailsButton.setText("View Details");
                 viewDetailsButton.setId(i);

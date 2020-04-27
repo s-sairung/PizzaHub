@@ -20,11 +20,13 @@ import java.util.Calendar;
 import java.util.Date;
 
 import chula.project.pizzahub.classes.FileInteract;
+import chula.project.pizzahub.classes.FragmentAssist;
 import chula.project.pizzahub.classes.InputStringConvert;
 
 public class SummaryFragment extends Fragment implements View.OnClickListener {
 
     private double totalPrice;
+    private String formattedDate;
 
     @Nullable
     @Override
@@ -61,12 +63,14 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
 
         Date c = Calendar.getInstance().getTime();
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String formattedDate = df.format(c);
+        formattedDate = df.format(c);
         TextView timeTextView = new TextView(getContext());
         timeTextView.setText("Date: " + formattedDate);
         timeTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         timeTextView.setTypeface(timeTextView.getTypeface(), Typeface.BOLD);
         layout.addView(timeTextView);
+
+        String receiptNo = FragmentAssist.receiptNumberGenerator();
 
         Button confirmButton = (Button) view.findViewById(R.id.confirmButton);
         confirmButton.setOnClickListener(this);
@@ -82,10 +86,11 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Fragment newFragment;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        String receiptNo = FragmentAssist.receiptNumberGenerator();
         switch (v.getId()) {
             case R.id.confirmButton:
                 newFragment = new ReceiptFragment();
-                FileInteract.addNewHistory(getContext(), FileInteract.readRawOrderFile(getContext()), totalPrice);
+                FileInteract.addNewHistory(getContext(), FileInteract.readRawOrderFile(getContext()), totalPrice, formattedDate, receiptNo);
                 FileInteract.clearOrder(getContext());
                 break;
             default: newFragment = new SummaryFragment(); break;
