@@ -29,7 +29,6 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
     private String formattedDate;
     private String receiptNo;
 
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

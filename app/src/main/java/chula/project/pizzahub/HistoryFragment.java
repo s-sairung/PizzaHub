@@ -20,13 +20,15 @@ import chula.project.pizzahub.classes.InputStringConvert;
 
 public class HistoryFragment extends Fragment implements View.OnClickListener {
 
+    private String[] processedHistory;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollHistory);
 
-        String[] processedHistory = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
+        processedHistory = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
         for (int i = 0; i < processedHistory.length; i++) {
             String order = processedHistory[i];
             order = order.trim();

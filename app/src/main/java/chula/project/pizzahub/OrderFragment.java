@@ -24,12 +24,14 @@ import chula.project.pizzahub.classes.InputStringConvert;
 
 public class OrderFragment extends Fragment implements View.OnClickListener {
 
+    private String[] processedOrder;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_order, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollOrder);
-        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
+        processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
         Button checkout = (Button) view.findViewById(R.id.checkoutButton);
         checkout.setOnClickListener(this);
         Button clearOrder = (Button) view.findViewById(R.id.clearOrderButton);
@@ -39,22 +41,25 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
             String order = processedOrder[i];
             order = order.trim();
             if (!order.equals("")) {
-//                TextView orderTextView = new TextView(getContext());
-//                orderTextView.setText(order);
-//                orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-//                layout.addView(orderTextView);
                 String[] orderSplit = order.split("\n");
                 TextView topicTextView = new TextView(getContext());
                 topicTextView.setText(orderSplit[0]);
                 topicTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 topicTextView.setTypeface(topicTextView.getTypeface(), Typeface.BOLD_ITALIC);
                 layout.addView(topicTextView);
-                for (int j = 1; j < orderSplit.length; j++) {
+                for (int j = 1; j < orderSplit.length - 1; j++) {
                     TextView orderTextView = new TextView(getContext());
                     orderTextView.setText(orderSplit[j]);
                     orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     layout.addView(orderTextView);
                 }
+                double orderPrice = Double.parseDouble(orderSplit[orderSplit.length - 1].replace("B", ""));
+                TextView priceTextView = new TextView(getContext());
+                priceTextView.setText("Price: " + orderPrice);
+                priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                priceTextView.setTypeface(priceTextView.getTypeface(), Typeface.BOLD);
+                layout.addView(priceTextView);
+
                 Button removeButton = new Button(getContext());
                 removeButton.setText("Remove this Order");
                 removeButton.setId(i);
@@ -66,7 +71,6 @@ public class OrderFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        String[] processedOrder = InputStringConvert.getOrderArray(FileInteract.readRawOrderFile(getContext()));
         Fragment newFragment;
         FragmentTransaction transaction = getFragmentManager().beginTransaction();
         switch (v.getId()) {
