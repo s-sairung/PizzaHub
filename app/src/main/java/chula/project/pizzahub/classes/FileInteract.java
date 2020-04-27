@@ -647,56 +647,61 @@ public class FileInteract {
         return string.trim();
     }
 
+    public static void writeReceiptFile(Context context, String order) {
+        order = order.trim();
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("receipt.txt", MODE_PRIVATE);
+            fos.write(order.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
+    public static String readReceiptFile(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("receipt.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return string.trim();
+    }
 
-
-
-    // ใช้ code 7 บรรทัดล่างในการอ่านไฟล์ได้
-
-    //        InputStream input = getAssets().open("input.txt");
-//        try {
-//
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-
-//    public static boolean getLoginStatus(Context context) {
-//        InputStream file = null;
-//        try {
-//            boolean value = false;
-//            file = context.getAssets().open("loginStatus.txt");
-//            Scanner in = new Scanner(file);
-//            if (in.hasNextLine()) {
-//                value = Boolean.parseBoolean(in.nextLine());
-//            }
-//            file.close();
-//            return value;
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return false;
-//    }
-
-
-//    public static String testLoginStatus(Context context) {
-//
-//        InputStream file = null;
-//        try {
-//            file = context.getAssets().open("loginStatus.txt");
-//            Scanner in = new Scanner(file);
-//                while (in.hasNextLine()) {
-//                    if (in.nextLine().equals("[Login]")) {
-//                        return in.nextLine();
-//                    }
-//            }
-//            file.close();
-//        }
-//        catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//        return "error";
-//    }
 
 }

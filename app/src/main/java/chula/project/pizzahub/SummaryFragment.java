@@ -92,6 +92,9 @@ public class SummaryFragment extends Fragment implements View.OnClickListener {
                 FileInteract.addNewHistory(getContext(), FileInteract.readRawOrderFile(getContext()), totalPrice, formattedDate, receiptNo);
                 FileInteract.clearOrder(getContext());
                 FileInteract.addNewReceiptNumber(getContext(), receiptNo);
+                String[] history = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
+                String latest = history[history.length - 1];
+                FileInteract.writeReceiptFile(getContext(), latest);
                 break;
             default: newFragment = new SummaryFragment(); break;
         }

@@ -12,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-import chula.project.pizzahub.classes.FragmentAssist;
+import chula.project.pizzahub.classes.FileInteract;
 
 public class ReceiptFragment extends Fragment {
     @Nullable
@@ -21,7 +21,9 @@ public class ReceiptFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_receipt, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollReceipt);
 
-
+        TextView rawReceiptTextView = new TextView(getContext());
+        rawReceiptTextView.setText(FileInteract.readReceiptFile(getContext()));
+        layout.addView(rawReceiptTextView);
 
         return view;
     }

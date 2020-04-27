@@ -14,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import chula.project.pizzahub.classes.FileInteract;
 import chula.project.pizzahub.classes.InputStringConvert;
@@ -84,9 +85,12 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
     }
 
     public void onClick(View v) {
-        switch (v.getId()) {
-
-        }
+        FileInteract.writeReceiptFile(getContext(), processedHistory[v.getId()]);
+        Fragment newFragment = new ReceiptFragment();
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(R.id.fragment_container, newFragment);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
 }
