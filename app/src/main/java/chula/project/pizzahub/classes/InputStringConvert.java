@@ -478,4 +478,13 @@ public class InputStringConvert {
         return noHistory;
     }
 
+    public static String[] getReceiptNumberArray(String rawReceiptNumber) {
+        if (!rawReceiptNumber.isEmpty()) {
+            String[] receipt = rawReceiptNumber.split("\n");
+            return receipt;
+        }
+        String[] noReceipt = {};
+        return noReceipt;
+    }
+
 }
