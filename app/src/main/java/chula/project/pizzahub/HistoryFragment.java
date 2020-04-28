@@ -19,22 +19,24 @@ import androidx.fragment.app.FragmentTransaction;
 import chula.project.pizzahub.classes.FileInteract;
 import chula.project.pizzahub.classes.InputStringConvert;
 
-public class HistoryFragment extends Fragment implements View.OnClickListener {
+public class HistoryFragment extends Fragment {
 
-    private String[] processedHistory;
+    String[] processedHistory;
+    String[] historyArray;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_history, container, false);
         LinearLayout layout = (LinearLayout) view.findViewById(R.id.layoutScrollHistory);
-        String[] historyArray = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
+        historyArray = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
         processedHistory = new String[historyArray.length];
 
         for (int i = 0; i < historyArray.length; i++) {
             processedHistory[i] = historyArray[(historyArray.length-1)-i];
         }
         int orderNo = processedHistory.length;
+
         for (int i = 0; i < processedHistory.length; i++) {
             String order = processedHistory[i];
             order = order.trim();
@@ -77,21 +79,41 @@ public class HistoryFragment extends Fragment implements View.OnClickListener {
                 Button viewDetailsButton = new Button(getContext());
                 viewDetailsButton.setText("View Details");
                 viewDetailsButton.setId(i);
-                viewDetailsButton.setOnClickListener(this);
+                viewDetailsButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        FileInteract.writeReceiptFile(getContext(), processedHistory[v.getId()]);
+                        Fragment newFragment = new ReceiptFragment();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_container, newFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
                 layout.addView(viewDetailsButton);
+
+                Button cancelButton = new Button(getContext());
+                cancelButton.setText("Cancel This Order");
+                cancelButton.setId(i);
+                cancelButton.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        historyArray = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
+                        FileInteract.removeHistory(getContext(), historyArray, historyArray.length - 1 - v.getId());
+                        String[] receiptNumbers = FileInteract.readRawReceiptNumberFile(getContext()).split("\n");
+                        FileInteract.removeReceiptNumber(getContext(), receiptNumbers, receiptNumbers.length - 1 -v.getId());
+                        Fragment newFragment = new HistoryFragment();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.fragment_container, newFragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
+                layout.addView(cancelButton);
+
             }
         }
         return view;
-    }
-
-    @Override
-    public void onClick(View v) {
-        FileInteract.writeReceiptFile(getContext(), processedHistory[v.getId()]);
-        Fragment newFragment = new ReceiptFragment();
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-        transaction.replace(R.id.fragment_container, newFragment);
-        transaction.addToBackStack(null);
-        transaction.commit();
     }
 
 }

@@ -452,6 +452,48 @@ public class FileInteract {
         string += "\n";
         string += "Receipt:";
         string += receiptNumber;
+        string += "\n";
+        string += "OrderNumber:";
+//        string += orderNumber;
+
+        string = string.trim();
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("history.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void removeHistory(Context context, String[] curHistoryArray, int index) {
+        String string = "";
+        curHistoryArray[index] = "";
+        string += curHistoryArray[0];
+        string = string.trim();
+        for (int i = 1; i < curHistoryArray.length; i++) {
+            if (!curHistoryArray[i].isEmpty()) {
+                string += "\n";
+                string += "--next-order--";
+                string += "\n";
+                string += curHistoryArray[i].trim();
+            }
+        }
 
         string = string.trim();
 
@@ -591,6 +633,40 @@ public class FileInteract {
         }
     }
 
+    public static void removeReceiptNumber(Context context, String[] curReceiptNumberArray, int index) {
+        String string = "";
+        curReceiptNumberArray[index] = "";
+        for (String number : curReceiptNumberArray) {
+            string += number;
+            string = string.trim();
+            string += "\n";
+        }
+
+        string = string.trim();
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("receiptno.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
     public static void clearReceiptNumber(Context context) {
         String string = "";
         FileOutputStream fos = null;
@@ -616,7 +692,7 @@ public class FileInteract {
         }
     }
 
-    public static String readRawReceiptNoFile(Context context) {
+    public static String readRawReceiptNumberFile(Context context) {
         String string = "";
         InputStream input = null;
         try {

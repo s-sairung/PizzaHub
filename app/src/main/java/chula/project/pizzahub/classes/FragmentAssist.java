@@ -26,7 +26,7 @@ public class FragmentAssist {
     }
 
     public static String receiptNumberGenerator(Context context) {
-        String[] processedReceiptNumbers = InputStringConvert.getReceiptNumberArray(FileInteract.readRawReceiptNoFile(context));
+        String[] processedReceiptNumbers = InputStringConvert.getReceiptNumberArray(FileInteract.readRawReceiptNumberFile(context));
         String receipt = genReceipt();
         List<String> list = Arrays.asList(processedReceiptNumbers);
         while (list.contains(receipt)) {
@@ -55,6 +55,5 @@ public class FragmentAssist {
         }
         return receiptNo;
     }
-
 
 }
