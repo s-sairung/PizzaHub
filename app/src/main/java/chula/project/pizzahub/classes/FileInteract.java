@@ -452,9 +452,12 @@ public class FileInteract {
         string += "\n";
         string += "Receipt:";
         string += receiptNumber;
+
         string += "\n";
         string += "OrderNumber:";
-//        string += orderNumber;
+        addOrderCount(context);
+        int orderNumber = getOrderCount(context);
+        string += orderNumber;
 
         string = string.trim();
 
@@ -779,5 +782,80 @@ public class FileInteract {
         return string.trim();
     }
 
+    public static int getOrderCount(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("ordercnt.txt");
+            Scanner in = new Scanner(input);
+            string = in.nextLine();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        int cnt = Integer.parseInt(string.trim());
+        return cnt;
+    }
+
+    public static void addOrderCount(Context context) {
+        int cnt = getOrderCount(context);
+        cnt++;
+        String cntString = cnt + "";
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("ordercnt.txt", MODE_PRIVATE);
+            fos.write(cntString.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void resetOrderCount(Context context) {
+        String string = "0";
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("ordercnt.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
 }

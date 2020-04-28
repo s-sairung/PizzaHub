@@ -33,13 +33,21 @@ public class ReceiptFragment extends Fragment {
 
         String[] receiptLines = FileInteract.readReceiptFile(getContext()).trim().split("\n");
 
+        String orderNo = receiptLines[receiptLines.length - 1].replace("OrderNumber:", "");
+        TextView orderNoTextView = new TextView(getContext());
+        orderNoTextView.setText("Order Number: " + orderNo);
+        orderNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+        orderNoTextView.setTypeface(orderNoTextView.getTypeface(), Typeface.BOLD);
+        orderNoTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.roboto_mono));
+        layout.addView(orderNoTextView);
+
         TextView order1TextView = new TextView(getContext());
         order1TextView.setText("\n" + receiptLines[0]);
         order1TextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         order1TextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.roboto_mono));
         layout.addView(order1TextView);
 
-        for (int i = 1; i < receiptLines.length - 4; i++) {
+        for (int i = 1; i < receiptLines.length - 5; i++) {
             TextView orderTextView = new TextView(getContext());
             orderTextView.setText(receiptLines[i]);
             orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -47,7 +55,7 @@ public class ReceiptFragment extends Fragment {
             layout.addView(orderTextView);
         }
 
-        double orderPrice = Double.parseDouble(receiptLines[receiptLines.length - 3].replace("Price:", ""));
+        double orderPrice = Double.parseDouble(receiptLines[receiptLines.length - 4].replace("Price:", ""));
         TextView priceTextView = new TextView(getContext());
         priceTextView.setText("\nTotal: " + orderPrice);
         priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -55,7 +63,7 @@ public class ReceiptFragment extends Fragment {
         priceTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.roboto_mono));
         layout.addView(priceTextView);
 
-        String date = receiptLines[receiptLines.length - 2].replace("Date:", "");
+        String date = receiptLines[receiptLines.length - 3].replace("Date:", "");
         TextView dateTextView = new TextView(getContext());
         dateTextView.setText("Order Date: " + date);
         dateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
@@ -63,7 +71,7 @@ public class ReceiptFragment extends Fragment {
         dateTextView.setTypeface(ResourcesCompat.getFont(getContext(), R.font.roboto_mono));
         layout.addView(dateTextView);
 
-        String receiptNo = receiptLines[receiptLines.length - 1].replace("Receipt:", "");
+        String receiptNo = receiptLines[receiptLines.length - 2].replace("Receipt:", "");
         TextView receiptNoTextView = new TextView(getContext());
         receiptNoTextView.setText("Receipt Number: " + receiptNo);
         receiptNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);

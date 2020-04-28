@@ -35,41 +35,40 @@ public class HistoryFragment extends Fragment {
         for (int i = 0; i < historyArray.length; i++) {
             processedHistory[i] = historyArray[(historyArray.length-1)-i];
         }
-        int orderNo = processedHistory.length;
 
         for (int i = 0; i < processedHistory.length; i++) {
             String order = processedHistory[i];
             order = order.trim();
             if (!order.equals("")) {
-                TextView topicTextView = new TextView(getContext());
-                topicTextView.setText("Order No: " + orderNo);
-                orderNo--;
-                topicTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
-                topicTextView.setTypeface(topicTextView.getTypeface(), Typeface.BOLD_ITALIC);
-                layout.addView(topicTextView);
                 String[] orderSplit = order.split("\n");
-                for (int j = 0; j < orderSplit.length - 4; j++) {
+                String orderNo = orderSplit[orderSplit.length - 1].replace("OrderNumber:", "");
+                TextView orderNoTextView = new TextView(getContext());
+                orderNoTextView.setText("Order Number: " + orderNo);
+                orderNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                orderNoTextView.setTypeface(orderNoTextView.getTypeface(), Typeface.BOLD);
+                layout.addView(orderNoTextView);
+                for (int j = 0; j < orderSplit.length - 5; j++) {
                     TextView orderTextView = new TextView(getContext());
                     orderTextView.setText(orderSplit[j]);
                     orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                     layout.addView(orderTextView);
                 }
 
-                double orderPrice = Double.parseDouble(orderSplit[orderSplit.length - 3].replace("Price:", ""));
+                double orderPrice = Double.parseDouble(orderSplit[orderSplit.length - 4].replace("Price:", ""));
                 TextView priceTextView = new TextView(getContext());
                 priceTextView.setText("\nTotal: " + orderPrice);
                 priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 priceTextView.setTypeface(priceTextView.getTypeface(), Typeface.BOLD);
                 layout.addView(priceTextView);
 
-                String date = orderSplit[orderSplit.length - 2].replace("Date:", "");
+                String date = orderSplit[orderSplit.length - 3].replace("Date:", "");
                 TextView dateTextView = new TextView(getContext());
                 dateTextView.setText("Order Date: " + date);
                 dateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 dateTextView.setTypeface(dateTextView.getTypeface(), Typeface.BOLD);
                 layout.addView(dateTextView);
 
-                String receiptNo = orderSplit[orderSplit.length - 1].replace("Receipt:", "");
+                String receiptNo = orderSplit[orderSplit.length - 2].replace("Receipt:", "");
                 TextView receiptNoTextView = new TextView(getContext());
                 receiptNoTextView.setText("Receipt Number: " + receiptNo);
                 receiptNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
