@@ -23,10 +23,11 @@ public class HistoryCancelFragmentAlertDialog extends DialogFragment {
 
         return new AlertDialog.Builder(getActivity())
                 .setTitle("Notice")
-                .setMessage("Cancel this order?")
+                .setMessage("Cancel order " + (historyArray.length - historyViewId) + "?")
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
+                                FileInteract.addNewCancelled(getContext(), historyArray[historyArray.length - 1 - historyViewId]);
                                 FileInteract.removeHistory(getContext(), historyArray, historyArray.length - 1 - historyViewId);
                                 FileInteract.removeReceiptNumber(getContext(), historyReceiptNumbersArray, historyReceiptNumbersArray.length - 1 - historyViewId);
                                 Toast.makeText(getActivity(),"Order Cancelled", Toast.LENGTH_SHORT).show();

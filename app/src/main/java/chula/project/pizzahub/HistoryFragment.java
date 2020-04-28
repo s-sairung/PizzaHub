@@ -98,14 +98,13 @@ public class HistoryFragment extends Fragment {
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-
                         historyArray = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
                         HistoryCancelFragmentAlertDialog.setHistoryArray(historyArray);
                         String[] receiptNumbers = FileInteract.readRawReceiptNumberFile(getContext()).split("\n");
                         HistoryCancelFragmentAlertDialog.setHistoryReceiptNumbersArray(receiptNumbers);
+                        HistoryCancelFragmentAlertDialog.setHistoryViewId(v.getId());
                         DialogFragment alertDialog = new HistoryCancelFragmentAlertDialog();
                         alertDialog.show(getFragmentManager(), "CancelAlert");
-
                     }
                 });
                 layout.addView(cancelButton);

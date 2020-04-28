@@ -487,4 +487,13 @@ public class InputStringConvert {
         return noReceipt;
     }
 
+    public static String[] getCancelledArray(String rawCancelled) {
+        if (!rawCancelled.isEmpty()) {
+            String[] history = rawCancelled.split("--next-order--");
+            return history;
+        }
+        String[] noCancelled = {};
+        return noCancelled;
+    }
+
 }

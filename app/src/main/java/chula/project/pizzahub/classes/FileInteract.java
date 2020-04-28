@@ -858,4 +858,122 @@ public class FileInteract {
         }
     }
 
+    public static void addNewCancelled(Context context, String processedHistory) {
+        if (processedHistory.isEmpty()) return;
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("cancelled.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        string = string.trim();
+        if (!string.isEmpty()) {
+            string += "\n";
+            string += "--next-order--";
+            string += "\n";
+        }
+        string += processedHistory.trim();
+        string = string.trim();
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("cancelled.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void clearCancelled(Context context) {
+        String string = "";
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("cancelled.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static String readRawCancelledFile(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("cancelled.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return string.trim();
+    }
+
 }
