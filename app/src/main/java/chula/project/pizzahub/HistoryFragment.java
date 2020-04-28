@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -97,15 +98,14 @@ public class HistoryFragment extends Fragment {
                 cancelButton.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+
                         historyArray = InputStringConvert.getHistoryArray(FileInteract.readRawHistoryFile(getContext()));
-                        FileInteract.removeHistory(getContext(), historyArray, historyArray.length - 1 - v.getId());
+                        HistoryCancelFragmentAlertDialog.setHistoryArray(historyArray);
                         String[] receiptNumbers = FileInteract.readRawReceiptNumberFile(getContext()).split("\n");
-                        FileInteract.removeReceiptNumber(getContext(), receiptNumbers, receiptNumbers.length - 1 -v.getId());
-                        Fragment newFragment = new HistoryFragment();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.fragment_container, newFragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
+                        HistoryCancelFragmentAlertDialog.setHistoryReceiptNumbersArray(receiptNumbers);
+                        DialogFragment alertDialog = new HistoryCancelFragmentAlertDialog();
+                        alertDialog.show(getFragmentManager(), "CancelAlert");
+
                     }
                 });
                 layout.addView(cancelButton);
