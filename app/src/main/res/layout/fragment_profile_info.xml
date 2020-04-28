@@ -70,8 +70,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="140dp"
-        android:layout_height="116dp"
+        android:layout_width="219dp"
+        android:layout_height="122dp"
         android:layout_centerInParent="true"
         android:scaleType="centerInside"
         app:layout_constraintBottom_toTopOf="@+id/logoutButton"
