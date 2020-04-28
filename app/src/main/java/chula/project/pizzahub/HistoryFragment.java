@@ -22,8 +22,8 @@ import chula.project.pizzahub.classes.InputStringConvert;
 
 public class HistoryFragment extends Fragment {
 
-    String[] processedHistory;
-    String[] historyArray;
+    private String[] processedHistory;
+    private String[] historyArray;
 
     @Nullable
     @Override
@@ -77,7 +77,7 @@ public class HistoryFragment extends Fragment {
                 layout.addView(receiptNoTextView);
 
                 Button viewDetailsButton = new Button(getContext());
-                viewDetailsButton.setText("View Details");
+                viewDetailsButton.setText("View Receipt");
                 viewDetailsButton.setId(i);
                 viewDetailsButton.setOnClickListener(new View.OnClickListener() {
                     @Override
