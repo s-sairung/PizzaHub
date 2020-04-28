@@ -15,21 +15,23 @@ import chula.project.pizzahub.classes.FileInteract;
 public class HistoryCancelFragmentAlertDialog extends DialogFragment {
 
     private static String[] historyArray;
-    private static String[] historyReceiptNumbersArray;
+    private static String[] receiptNumbersArray;
     private static int historyViewId;
+    private static String orderNumber;
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        setHistoryOrderNumber();
 
         return new AlertDialog.Builder(getActivity())
                 .setTitle("Notice")
-                .setMessage("Cancel order " + (historyArray.length - historyViewId) + "?")
+                .setMessage("Cancel Order " + orderNumber + "?")
                 .setPositiveButton("Yes",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int whichButton) {
                                 FileInteract.addNewCancelled(getContext(), historyArray[historyArray.length - 1 - historyViewId]);
                                 FileInteract.removeHistory(getContext(), historyArray, historyArray.length - 1 - historyViewId);
-                                FileInteract.removeReceiptNumber(getContext(), historyReceiptNumbersArray, historyReceiptNumbersArray.length - 1 - historyViewId);
+                                FileInteract.removeReceiptNumber(getContext(), receiptNumbersArray, receiptNumbersArray.length - 1 - historyViewId);
                                 Toast.makeText(getActivity(),"Order Cancelled", Toast.LENGTH_SHORT).show();
                                 Fragment newFragment = new HistoryFragment();
                                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -57,7 +59,13 @@ public class HistoryCancelFragmentAlertDialog extends DialogFragment {
     }
 
     public static void setHistoryReceiptNumbersArray(String[] curReceiptNumbersArray) {
-        historyReceiptNumbersArray = curReceiptNumbersArray;
+        receiptNumbersArray = curReceiptNumbersArray;
+    }
+
+    private static void setHistoryOrderNumber() {
+        String history = historyArray[historyArray.length - 1 - historyViewId];
+        String[] historyLines = history.split("\n");
+        orderNumber = historyLines[historyLines.length - 1].replace("OrderNumber:", "");
     }
 
 
