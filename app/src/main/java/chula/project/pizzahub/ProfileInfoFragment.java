@@ -26,11 +26,10 @@ import chula.project.pizzahub.classes.Users;
 
 public class ProfileInfoFragment extends Fragment {
 
-    //เพิ่มมา
     ImageView imageView;
     Button button;
     Random r;
-    Interger[] images = {
+    int[] images = {
             R.drawable.dog1,
             R.drawable.dog2,
             R.drawable.cat1,
@@ -51,9 +50,8 @@ public class ProfileInfoFragment extends Fragment {
         TextView cardNo = (TextView) view.findViewById(R.id.showCardTextView);
 
 
-        //พอเพิ่มตรงนี้มาแดงเต็มเลย;-;
-        imegeView = (ImageView) findViewById(R.id.imageView);
-        button = (Button) findViewById(R.id.button);
+        imageView = (ImageView) view.findViewById(R.id.imageView); //ตอนเราทำใน fragment เราต้องสร้างตัวแปร view มาก่อนถึงจะหา id ได้ เย่ ๆ
+        button = (Button) view.findViewById(R.id.button);
         r= new Random();
         button.setOnClickListener(new View.OnClickListener(){
             @Override
