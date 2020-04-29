@@ -24,7 +24,7 @@ public class FileInteract {
         FileOutputStream fos = null;
 
         try {
-            fos = context.openFileOutput("loginStatus.txt", MODE_PRIVATE);
+            fos = context.openFileOutput("loginstatus.txt", MODE_PRIVATE);
             fos.write(status.toString().getBytes());
 
         } catch (FileNotFoundException e) {
@@ -47,7 +47,7 @@ public class FileInteract {
         String output = "";
 
         try {
-            fis = context.openFileInput("loginStatus.txt");
+            fis = context.openFileInput("loginstatus.txt");
             InputStreamReader isr = new InputStreamReader(fis);
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
@@ -974,6 +974,50 @@ public class FileInteract {
             }
         }
         return string.trim();
+    }
+
+    public static void writeAccountsFileFromInput(Context context) {
+        ArrayList<String[]> accounts = InputStringConvert.getAccountArrayList(InputStringConvert.getAccount(readInputFile(context)));
+        if (accounts.isEmpty()) return;
+
+        String string = "";
+
+        string += accounts.get(0)[0].trim();
+        string += "\n";
+        string += accounts.get(0)[1].trim();
+
+        for (int i = 1; i < accounts.size(); i++) {
+            string += "\n";
+            string += "--next-account--";
+            string += "\n";
+            string += accounts.get(i)[0].trim();
+            string += "\n";
+            string += accounts.get(i)[1].trim();
+        }
+
+        string = string.trim();
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("inputaccounts.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
 
 }

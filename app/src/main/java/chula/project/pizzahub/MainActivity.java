@@ -35,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         FileInteract.resetOrderCount(getBaseContext());
         FileInteract.clearCancelled(getBaseContext());
 
+        FileInteract.writeAccountsFileFromInput(getBaseContext());
+
         BottomNavigationView bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnNavigationItemSelectedListener(navListener);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();

@@ -49,7 +49,7 @@ public class ProfileInfoFragment extends Fragment {
         TextView password = (TextView) view.findViewById(R.id.showPasswordTextView);
         TextView cardNo = (TextView) view.findViewById(R.id.showCardTextView);
 
-        imageView = (ImageView) view.findViewById(R.id.imageView); //ตอนเราทำใน fragment เราต้องสร้างตัวแปร view มาก่อนถึงจะหา id ได้ เย่ ๆ
+        imageView = (ImageView) view.findViewById(R.id.imageView);
         button = (Button) view.findViewById(R.id.button);
         r= new Random();
         button.setOnClickListener(new View.OnClickListener(){
