@@ -24,6 +24,7 @@ public class HistoryFragment extends Fragment {
 
     private String[] processedHistory;
     private String[] historyArray;
+    private String[] processedCancelledOrder;
 
     @Nullable
     @Override
@@ -38,16 +39,21 @@ public class HistoryFragment extends Fragment {
         }
 
         for (int i = 0; i < processedHistory.length; i++) {
+
             String order = processedHistory[i];
             order = order.trim();
+
             if (!order.equals("")) {
+
                 String[] orderSplit = order.split("\n");
+
                 String orderNo = orderSplit[orderSplit.length - 1].replace("OrderNumber:", "");
                 TextView orderNoTextView = new TextView(getContext());
                 orderNoTextView.setText("Order Number: " + orderNo);
                 orderNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
                 orderNoTextView.setTypeface(orderNoTextView.getTypeface(), Typeface.BOLD);
                 layout.addView(orderNoTextView);
+
                 for (int j = 0; j < orderSplit.length - 5; j++) {
                     TextView orderTextView = new TextView(getContext());
                     orderTextView.setText(orderSplit[j]);
@@ -111,6 +117,63 @@ public class HistoryFragment extends Fragment {
 
             }
         }
+
+        String[] cancelledOrderArray = InputStringConvert.getCancelledArray(FileInteract.readRawCancelledFile(getContext()));
+        processedCancelledOrder = new String[cancelledOrderArray.length];
+
+        for (int i = 0; i < cancelledOrderArray.length; i++) {
+            processedCancelledOrder[i] = cancelledOrderArray[(cancelledOrderArray.length-1)-i];
+        }
+
+        if (processedCancelledOrder.length != 0) {
+            TextView cancelledOrderTextView = new TextView(getContext());
+            cancelledOrderTextView.setText("Cancelled Orders:");
+            cancelledOrderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 22);
+            cancelledOrderTextView.setTypeface(cancelledOrderTextView.getTypeface(), Typeface.BOLD_ITALIC);
+            layout.addView(cancelledOrderTextView);
+        }
+
+        for (int i = 0; i < processedCancelledOrder.length; i++) {
+
+            String order = processedCancelledOrder[i];
+            order = order.trim();
+
+            if (!order.equals("")) {
+
+                String[] orderSplit = order.split("\n");
+
+                String orderNo = orderSplit[orderSplit.length - 1].replace("OrderNumber:", "");
+                TextView orderNoTextView = new TextView(getContext());
+                orderNoTextView.setText("\nOrder Number: " + orderNo);
+                orderNoTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                orderNoTextView.setTypeface(orderNoTextView.getTypeface(), Typeface.BOLD);
+                layout.addView(orderNoTextView);
+
+                for (int j = 0; j < orderSplit.length - 5; j++) {
+                    TextView orderTextView = new TextView(getContext());
+                    orderTextView.setText(orderSplit[j]);
+                    orderTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                    layout.addView(orderTextView);
+                }
+
+                double orderPrice = Double.parseDouble(orderSplit[orderSplit.length - 4].replace("Price:", ""));
+                TextView priceTextView = new TextView(getContext());
+                priceTextView.setText("\nTotal: " + orderPrice);
+                priceTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                priceTextView.setTypeface(priceTextView.getTypeface(), Typeface.BOLD);
+                layout.addView(priceTextView);
+
+                String date = orderSplit[orderSplit.length - 3].replace("Date:", "");
+                TextView dateTextView = new TextView(getContext());
+                dateTextView.setText("Order Date: " + date);
+                dateTextView.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
+                dateTextView.setTypeface(dateTextView.getTypeface(), Typeface.BOLD);
+                layout.addView(dateTextView);
+
+            }
+
+        }
+
         return view;
     }
 
