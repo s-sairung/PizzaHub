@@ -61,7 +61,7 @@ public class ProfileInfoFragment extends Fragment {
                 } while(pickedImage == lastPicked);
                 lastPicked = pickedImage;
                 imageView.setImageResource(images[pickedImage]);
-                FileInteract.saveProfilePicture(getContext(), profile, pickedImage);
+                FileInteract.saveProfileWithPicture(getContext(), profile, pickedImage);
             }
 
         });

@@ -108,7 +108,7 @@ public class FileInteract {
         }
     }
 
-    public static void saveProfilePicture(Context context, Profile profile, int pickedImage) {
+    public static void saveProfileWithPicture(Context context, Profile profile, int pickedImage) {
 
         FileOutputStream fos = null;
 
