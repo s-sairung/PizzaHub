@@ -8,4 +8,3 @@ one of the *Pizzie Pizza* projects
 ## progression
 - [x] 60% usable
 - [ ] 100% usable
-- [x] considered 100% usable but actually not 100%
