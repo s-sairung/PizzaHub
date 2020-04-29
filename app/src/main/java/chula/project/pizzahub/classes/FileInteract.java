@@ -148,6 +148,30 @@ public class FileInteract {
         return profile;
     }
 
+    public static void clearProfile(Context context) {
+        String string = "";
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("profile.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 
     public static String readInputFile(Context context) {
         String string = "";
@@ -1018,6 +1042,159 @@ public class FileInteract {
                 }
             }
         }
+    }
+
+    public static String readRawInputAccountsFile(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("inputaccounts.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return string.trim();
+    }
+
+    public static void addNewUserAccount(Context context, Profile profile) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("useraccounts.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        string = string.trim();
+        if (!string.isEmpty()) {
+            string += "\n";
+            string += "--next-account--";
+            string += "\n";
+        }
+
+        string += profile.getUserID();
+        string += "\n";
+        string += profile.getPassword();
+        string += "\n";
+        string += profile.getCardNumber();
+        string = string.trim();
+
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("useraccounts.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static void clearUserAccounts(Context context) {
+        String string = "";
+        FileOutputStream fos = null;
+        try {
+            fos = context.openFileOutput("useraccounts.txt", MODE_PRIVATE);
+            fos.write(string.getBytes());
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static String readRawUserAccountsFile(Context context) {
+        String string = "";
+        InputStream input = null;
+        try {
+            input = context.openFileInput("useraccounts.txt");
+            Scanner in = new Scanner(input);
+            while (in.hasNextLine()) {
+                string += in.nextLine();
+                if (in.hasNextLine()) {
+                    string += "\n";
+                }
+            }
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (input != null) {
+                try {
+                    input.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return string.trim();
     }
 
 }

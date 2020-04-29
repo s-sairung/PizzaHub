@@ -7,7 +7,6 @@ public class Profile {
     private String userID;
     private String password;
     private String cardNumber;
-    private int randnum;
 
     public Profile() {
         this("", "", "");

@@ -43,12 +43,9 @@ public class ProfileLoginFragment extends Fragment {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String input = FileInteract.readInputFile(getContext());
-                String accounts = InputStringConvert.getAccount(input);
-                System.out.println(accounts);
                 String userID = userIDInput.getText().toString();
                 String password = passwordInput.getText().toString();
-                if (FragmentAssist.checkLogin(userID, password, getContext())) {
+                if (FragmentAssist.authenticate(userID, password, getContext())) {
                     Profile newProfile = new Profile(userID, password);
                     FileInteract.saveProfile(getContext(), newProfile);
                     FileInteract.saveLoginStatus(getContext(), true);

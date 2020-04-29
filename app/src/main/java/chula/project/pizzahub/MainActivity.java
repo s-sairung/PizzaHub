@@ -28,12 +28,14 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //reset ทุกอย่างให้กลับมาค่าเริ่มต้น
+        FileInteract.clearProfile(getBaseContext());
         FileInteract.saveLoginStatus(getBaseContext(), false);
         FileInteract.clearHistory(getBaseContext());
         FileInteract.clearReceiptNumber(getBaseContext());
         FileInteract.clearOrder(getBaseContext());
         FileInteract.resetOrderCount(getBaseContext());
         FileInteract.clearCancelled(getBaseContext());
+        FileInteract.clearUserAccounts(getBaseContext());
 
         FileInteract.writeAccountsFileFromInput(getBaseContext());
 

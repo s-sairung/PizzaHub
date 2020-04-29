@@ -465,8 +465,7 @@ public class InputStringConvert {
             String[] orders = string.split("---------------");
             return orders;
         }
-        String[] noOrder = {};
-        return noOrder;
+        return new String[]{};
     }
 
     public static String[] getHistoryArray(String rawHistory) {
@@ -474,8 +473,7 @@ public class InputStringConvert {
             String[] history = rawHistory.split("--next-order--");
             return history;
         }
-        String[] noHistory = {};
-        return noHistory;
+        return new String[]{};
     }
 
     public static String[] getReceiptNumberArray(String rawReceiptNumber) {
@@ -483,8 +481,7 @@ public class InputStringConvert {
             String[] receipt = rawReceiptNumber.split("\n");
             return receipt;
         }
-        String[] noReceipt = {};
-        return noReceipt;
+        return new String[]{};
     }
 
     public static String[] getCancelledArray(String rawCancelled) {
@@ -492,8 +489,15 @@ public class InputStringConvert {
             String[] history = rawCancelled.split("--next-order--");
             return history;
         }
-        String[] noCancelled = {};
-        return noCancelled;
+        return new String[]{};
+    }
+
+    public static String[] getAccountsArray(String rawInputAccountsOrRawAccounts) {
+        if (!rawInputAccountsOrRawAccounts.isEmpty()) {
+            String[] history = rawInputAccountsOrRawAccounts.split("--next-account--");
+            return history;
+        }
+        return new String[]{};
     }
 
 }

@@ -25,6 +25,30 @@ public class FragmentAssist {
         return false;
     }
 
+    public static boolean authenticate(String userID, String password, Context context) {
+        String[] userAccounts = InputStringConvert.getAccountsArray(FileInteract.readRawUserAccountsFile(context));
+        String[] inputAccounts = InputStringConvert.getAccountsArray(FileInteract.readRawInputAccountsFile(context));
+        ArrayList<String[]> accountsList = new ArrayList<>();
+        for (int i = 0; i < userAccounts.length; i++) {
+            accountsList.add(userAccounts[i].trim().split("\n"));
+        }
+        for (int i = 0; i < inputAccounts.length; i++) {
+            accountsList.add(inputAccounts[i].trim().split("\n"));
+        }
+
+        //0 = userID
+        //1 = password
+
+        for (int i = 0; i < accountsList.size(); i++) {
+            if (userID.equals(accountsList.get(i)[0])) {
+                if (password.equals(accountsList.get(i)[1])) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     public static String receiptNumberGenerator(Context context) {
         String[] processedReceiptNumbers = InputStringConvert.getReceiptNumberArray(FileInteract.readRawReceiptNumberFile(context));
         String receipt = genReceipt();
