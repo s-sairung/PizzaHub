@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -51,21 +52,32 @@ public class ProfileInfoFragment extends Fragment {
 
         imageView = (ImageView) view.findViewById(R.id.imageView);
         imageView.setImageResource(images[FileInteract.loadProfilePicture(getContext())]);
-        button = (Button) view.findViewById(R.id.button);
         r = new Random();
-        button.setOnClickListener(new View.OnClickListener(){
+        ImageButton randomButtom = (ImageButton) view.findViewById(R.id.randomImageButton);
+        randomButtom.setOnClickListener(new View.OnClickListener() {
             @Override
-              public void onClick(View v){
-                do{
+            public void onClick(View v) {
+                do {
                     pickedImage = r.nextInt(images.length);
                 } while(pickedImage == lastPicked);
                 lastPicked = pickedImage;
                 imageView.setImageResource(images[pickedImage]);
                 FileInteract.saveProfileWithPicture(getContext(), profile, pickedImage);
             }
-
         });
-
+//        button = (Button) view.findViewById(R.id.button);
+//        button.setOnClickListener(new View.OnClickListener(){
+//            @Override
+//              public void onClick(View v){
+//                do{
+//                    pickedImage = r.nextInt(images.length);
+//                } while(pickedImage == lastPicked);
+//                lastPicked = pickedImage;
+//                imageView.setImageResource(images[pickedImage]);
+//                FileInteract.saveProfileWithPicture(getContext(), profile, pickedImage);
+//            }
+//
+//        });
 
         userID.setText(profile.getUserID());
         password.setText(InputStringConvert.convertStar(profile.getPassword()));
@@ -76,6 +88,7 @@ public class ProfileInfoFragment extends Fragment {
             public void onClick(View v) {
                 Fragment newFragment = new ProfileLoginFragment();
                 Toast.makeText(getActivity(),"Logout Successful", Toast.LENGTH_SHORT).show();
+                FileInteract.clearProfile(getContext());
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
                 transaction.replace(R.id.fragment_container, newFragment);
                 transaction.commit();
