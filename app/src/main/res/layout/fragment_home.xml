@@ -23,6 +23,7 @@
                  android:layout_height="fill_parent"
                  android:padding="10dp"
                  android:text="PizzaHub"
+                 android:textSize="20sp"
                  android:textStyle="bold|italic" />
 
              <ImageButton
