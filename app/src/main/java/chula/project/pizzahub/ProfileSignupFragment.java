@@ -33,14 +33,16 @@ public class ProfileSignupFragment extends Fragment {
                 String userID = userIDInput.getText().toString();
                 String password = passwordInput.getText().toString();
                 String cardNumber = cardNumberInput.getText().toString();
-                Profile newProfile = new Profile(userID, password, cardNumber);
-                FileInteract.addNewUserAccount(getContext(), newProfile);
-                FileInteract.saveLoginStatus(getContext(), true);
-                Fragment newFragment = new ProfileLoginFragment();
-                Toast.makeText(getActivity(),"Signup Successful", Toast.LENGTH_SHORT).show();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                transaction.replace(R.id.fragment_container, newFragment);
-                transaction.commit();
+                if (!userID.trim().isEmpty() && !password.trim().isEmpty()) {
+                    Profile newProfile = new Profile(userID, password, cardNumber);
+                    FileInteract.addNewUserAccount(getContext(), newProfile);
+                    FileInteract.saveLoginStatus(getContext(), true);
+                    Fragment newFragment = new ProfileLoginFragment();
+                    Toast.makeText(getActivity(),"Signup Successful", Toast.LENGTH_SHORT).show();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    transaction.replace(R.id.fragment_container, newFragment);
+                    transaction.commit();
+                }
             }
         });
 
