@@ -81,19 +81,23 @@ public class FileInteract {
 
         String userID = profile.getUserID() + System.getProperty("line.separator");
         String password = profile.getPassword() + System.getProperty("line.separator");
-        String cardNo = profile.getCardNumber();
+        String cardNo = profile.getCardNumber() + System.getProperty("line.separator");
+        String image = 0+"";
 
         try {
             fos = context.openFileOutput("profile.txt", MODE_PRIVATE);
             fos.write(userID.getBytes());
             fos.write(password.getBytes());
             fos.write(cardNo.getBytes());
-
-        } catch (FileNotFoundException e) {
+            fos.write(image.getBytes());
+        }
+        catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
+        }
+        catch (IOException e) {
             e.printStackTrace();
-        } finally {
+        }
+        finally {
             if (fos != null) {
                 try {
                     fos.close();
@@ -104,11 +108,82 @@ public class FileInteract {
         }
     }
 
+    public static void saveProfilePicture(Context context, Profile profile, int pickedImage) {
+
+        FileOutputStream fos = null;
+
+        String userID = profile.getUserID() + System.getProperty("line.separator");
+        String password = profile.getPassword() + System.getProperty("line.separator");
+        String cardNo = profile.getCardNumber() + System.getProperty("line.separator");
+        String image = pickedImage+"";
+
+        try {
+            fos = context.openFileOutput("profile.txt", MODE_PRIVATE);
+            fos.write(userID.getBytes());
+            fos.write(password.getBytes());
+            fos.write(cardNo.getBytes());
+            fos.write(image.getBytes());
+
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fos != null) {
+                try {
+                    fos.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+
+    public static int loadProfilePicture(Context context) {
+        FileInputStream fis = null;
+        int pickedImage = 0;
+        String string = "";
+
+        try {
+            fis = context.openFileInput("profile.txt");
+            InputStreamReader isr = new InputStreamReader(fis);
+            BufferedReader br = new BufferedReader(isr);
+            StringBuilder sb = new StringBuilder();
+            String text;
+
+            while ((text = br.readLine()) != null) {
+                sb.append(text).append("\n");
+            }
+            string = sb.toString();
+        }
+        catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            if (fis != null) {
+                try {
+                    fis.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        string = string.trim();
+        String[] lines = string.split("\n");
+        return Integer.parseInt(lines[3]);
+    }
+
     public static Profile loadProfile(Context context) {
         FileInputStream fis = null;
 
         Profile profile = new Profile();
-        String[] array1 = new String[3];
+        String[] array1 = new String[4];
         int arrayNo = 0;
 
         try {

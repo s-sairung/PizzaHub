@@ -44,22 +44,24 @@ public class ProfileInfoFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_profile_info, container, false);
-        Profile profile = FileInteract.loadProfile(getContext());
+        final Profile profile = FileInteract.loadProfile(getContext());
         TextView userID = (TextView) view.findViewById(R.id.showUserIDtextView);
         TextView password = (TextView) view.findViewById(R.id.showPasswordTextView);
         TextView cardNo = (TextView) view.findViewById(R.id.showCardTextView);
 
         imageView = (ImageView) view.findViewById(R.id.imageView);
+        imageView.setImageResource(images[FileInteract.loadProfilePicture(getContext())]);
         button = (Button) view.findViewById(R.id.button);
-        r= new Random();
+        r = new Random();
         button.setOnClickListener(new View.OnClickListener(){
             @Override
               public void onClick(View v){
                 do{
                     pickedImage = r.nextInt(images.length);
-                } while(pickedImage==lastPicked);
-                lastPicked=pickedImage;
+                } while(pickedImage == lastPicked);
+                lastPicked = pickedImage;
                 imageView.setImageResource(images[pickedImage]);
+                FileInteract.saveProfilePicture(getContext(), profile, pickedImage);
             }
 
         });
